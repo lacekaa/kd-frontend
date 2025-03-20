@@ -1,0 +1,24 @@
+<!--<div class = "typing-area">-->
+<!--  <div class = "experiment-description">-->
+<!--    <h1>Type your prompt in the text field, then highlight the most important part in your prompt and hit finish!</h1>-->
+<!--  </div>-->
+
+<!--  <div class = "prompt-area">-->
+<!--    <textarea id = "prompt-area" placeholder = "Type your prompt here..."></textarea>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div>
+  <h3>Type the following:</h3>
+  <p>{{ prompt }}</p>
+  <textarea
+    #typingArea
+    (keydown)="onKeyDown($event)"
+    (keyup)="onKeyUp($event)"
+    (mouseup)="onTextSelection()"
+    rows="5"
+    cols="60"
+  ></textarea>
+
+  <button (click)="sendKeystrokes()">Submit</button>
+</div>
