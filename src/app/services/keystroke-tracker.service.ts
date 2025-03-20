@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Keystroke } from '../keystroke.model';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +9,8 @@ import { Keystroke } from '../keystroke.model';
 export class KeystrokeTrackerService {
   private keystrokes: Keystroke[] = [];
   private keystrokeIdCounter = 1;
-  private participantId = 10001; // Set dynamically if needed
+  // Initialize participantId as a new UUID
+  private participantId: string = uuidv4();
   private prompt = ''; // Will be set when the prompt is given
   private highlight = ''; // Will be set when the user highlights text
 

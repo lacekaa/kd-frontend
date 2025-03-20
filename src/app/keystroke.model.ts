@@ -1,5 +1,5 @@
 export class Keystroke {
-  participantId: number;
+  participantId: string;
   prompt: string;
   highlight: string;
   keystrokeId: number;
@@ -9,7 +9,7 @@ export class Keystroke {
   keycode: number;
 
   constructor(
-    participantId: number,
+    participantId: string,
     prompt: string,
     highlight: string,
     keystrokeId: number,

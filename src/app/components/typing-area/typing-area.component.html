@@ -1,11 +1,16 @@
-<!--<div class = "typing-area">-->
-<!--  <div class = "experiment-description">-->
-<!--    <h1>Type your prompt in the text field, then highlight the most important part in your prompt and hit finish!</h1>-->
-<!--  </div>-->
+<!--<div>-->
+<!--  <h3>Type the following:</h3>-->
+<!--  <p>{{ prompt }}</p>-->
+<!--  <textarea-->
+<!--    #typingArea-->
+<!--    (keydown)="onKeyDown($event)"-->
+<!--    (keyup)="onKeyUp($event)"-->
+<!--    (mouseup)="onTextSelection()"-->
+<!--    rows="5"-->
+<!--    cols="60"-->
+<!--  ></textarea>-->
 
-<!--  <div class = "prompt-area">-->
-<!--    <textarea id = "prompt-area" placeholder = "Type your prompt here..."></textarea>-->
-<!--  </div>-->
+<!--  <button (click)="sendKeystrokes()">Submit</button>-->
 <!--</div>-->
 
 <div>
@@ -18,7 +23,14 @@
     (mouseup)="onTextSelection()"
     rows="5"
     cols="60"
+    placeholder="Type your prompt here..."
   ></textarea>
 
-  <button (click)="sendKeystrokes()">Submit</button>
+  <!-- Error message display -->
+  <div *ngIf="errorMessage" class="error-message" style="color: red; margin-top: 10px;">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Disable button if the form has been submitted -->
+  <button [disabled]="submitted" (click)="sendKeystrokes()">Submit</button>
 </div>

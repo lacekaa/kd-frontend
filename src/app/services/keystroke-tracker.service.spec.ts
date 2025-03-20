@@ -1,16 +1,10 @@
-import { TestBed } from '@angular/core/testing';
+/// <reference types="jasmine" />
 
-import { KeystrokeTrackerService } from './keystroke-tracker.service';
+import {KeystrokeTrackerService} from './keystroke-tracker.service';
 
 describe('KeystrokeTrackerService', () => {
-  let service: KeystrokeTrackerService;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(KeystrokeTrackerService);
-  });
-
-  it('should be created', () => {
+  it('should create the service', () => {
+    const service = new KeystrokeTrackerService();
     expect(service).toBeTruthy();
   });
 });
