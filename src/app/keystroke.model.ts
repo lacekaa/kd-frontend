@@ -2,6 +2,7 @@ export class Keystroke {
   participantId: string;
   prompt: string;
   highlight: string;
+  highlights: string[] = [];
   keystrokeId: number;
   pressTime: number;
   releaseTime: number;
@@ -12,6 +13,7 @@ export class Keystroke {
     participantId: string,
     prompt: string,
     highlight: string,
+    highlights: string[],
     keystrokeId: number,
     pressTime: number,
     releaseTime: number,
@@ -21,6 +23,7 @@ export class Keystroke {
     this.participantId = participantId;
     this.prompt = prompt;
     this.highlight = highlight;
+    this.highlights = highlights;
     this.keystrokeId = keystrokeId;
     this.pressTime = pressTime;
     this.releaseTime = releaseTime;

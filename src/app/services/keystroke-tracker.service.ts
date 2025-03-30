@@ -13,10 +13,15 @@ export class KeystrokeTrackerService {
   private participantId: string = uuidv4();
   private prompt = ''; // Will be set when the prompt is given
   private highlight = ''; // Will be set when the user highlights text
+  private highlights: string[] = []; // Array to store highlights
 
   keystrokesUpdated = new Subject<Keystroke[]>();
 
   constructor() {}
+
+  setId(participantId: string) {
+    this.participantId = participantId;
+  }
 
   setPrompt(prompt: string) {
     this.prompt = prompt;
@@ -26,6 +31,10 @@ export class KeystrokeTrackerService {
     this.highlight = highlight;
   }
 
+  addHighlight(highlight: string) {
+    this.highlights.push(highlight);
+  }
+
   trackKeydown(event: KeyboardEvent) {
     const pressTime = Date.now();
     this.keystrokes.push(
@@ -33,6 +42,7 @@ export class KeystrokeTrackerService {
         this.participantId,
         this.prompt,
         this.highlight,
+        this.highlights,
         this.keystrokeIdCounter++,
         pressTime,
         0,

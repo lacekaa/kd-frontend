@@ -1,0 +1,5 @@
+<!-- src/app/components/register-user/register-user.component.html -->
+<h1>Please enter your prolific id here</h1>
+<input type="text" #prolificId (input)="onProlificIdChange($event)" placeholder="Prolific ID" />
+<button (click)="submitProlificId()">submit</button>
+<p *ngIf="errorMessage">{{ errorMessage }}</p>
