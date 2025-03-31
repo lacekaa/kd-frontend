@@ -1,3 +1,4 @@
+// typescript
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Keystroke } from '../keystroke.model';
@@ -9,12 +10,10 @@ import { v4 as uuidv4 } from 'uuid';
 export class KeystrokeTrackerService {
   private keystrokes: Keystroke[] = [];
   private keystrokeIdCounter = 1;
-  // Initialize participantId as a new UUID
+  // participantId wird hier initialisiert. Wird im Registrierungsprozess ersetzt.
   private participantId: string = uuidv4();
-  private prompt = ''; // Will be set when the prompt is given
-  private highlight = ''; // Will be set when the user highlights text
-  private highlights: string[] = []; // Array to store highlights
-
+  private prompt = '';
+  private highlights: string[] = [];
   keystrokesUpdated = new Subject<Keystroke[]>();
 
   constructor() {}
@@ -23,12 +22,13 @@ export class KeystrokeTrackerService {
     this.participantId = participantId;
   }
 
-  setPrompt(prompt: string) {
-    this.prompt = prompt;
+  // Neuer Getter für participantId
+  getParticipantId(): string {
+    return this.participantId;
   }
 
-  setHighlight(highlight: string) {
-    this.highlight = highlight;
+  setPrompt(prompt: string) {
+    this.prompt = prompt;
   }
 
   addHighlight(highlight: string) {
@@ -41,7 +41,6 @@ export class KeystrokeTrackerService {
       new Keystroke(
         this.participantId,
         this.prompt,
-        this.highlight,
         this.highlights,
         this.keystrokeIdCounter++,
         pressTime,
