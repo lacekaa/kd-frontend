@@ -1,8 +1,10 @@
+// typescript
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { KeystrokeTrackerService } from '../../services/keystroke-tracker.service';
 import { HighlightService } from '../../services/highlight.service';
+import { DataProcessingService, PayloadModel } from '../../services/data-processing.service';
 
 @Component({
   selector: 'app-typing-area',
@@ -21,7 +23,8 @@ export class TypingAreaComponent implements OnInit {
   constructor(
     private keystrokeTrackerService: KeystrokeTrackerService,
     private highlightService: HighlightService,
-    private router: Router
+    private router: Router,
+    private dataProcessingService: DataProcessingService
   ) {}
 
   ngOnInit(): void {
@@ -70,16 +73,24 @@ export class TypingAreaComponent implements OnInit {
       keystroke.prompt = currentPrompt;
     });
     const uniqueParticipantId = this.keystrokeTrackerService.getParticipantId();
-    const payload = {
+    const payload: PayloadModel = {
       participantId: uniqueParticipantId,
       prompt: currentPrompt,
       highlights: highlights,
       keystrokes: this.keystrokes,
     };
-    console.log('Payload to be sent:', payload);
-    this.keystrokeTrackerService.resetKeystrokes();
-    sessionStorage.setItem('submitted', 'true');
-    this.submitted = true;
-    this.router.navigate(['/thank-you']);
+
+    this.dataProcessingService.submitPayload(payload).subscribe({
+      next: response => {
+        console.log('Response from backend:', response);
+        this.keystrokeTrackerService.resetKeystrokes();
+        sessionStorage.setItem('submitted', 'true');
+        this.submitted = true;
+        this.router.navigate(['/thank-you']);
+      },
+      error: err => {
+        console.error('Error submitting payload:', err);
+      }
+    });
   }
 }
