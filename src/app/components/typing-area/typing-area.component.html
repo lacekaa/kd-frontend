@@ -1,54 +1,35 @@
-<!--&lt;!&ndash;<div>&ndash;&gt;-->
-<!--&lt;!&ndash;  <h3>Type the following:</h3>&ndash;&gt;-->
-<!--&lt;!&ndash;  <p>{{ prompt }}</p>&ndash;&gt;-->
-<!--&lt;!&ndash;  <textarea&ndash;&gt;-->
-<!--&lt;!&ndash;    #typingArea&ndash;&gt;-->
-<!--&lt;!&ndash;    (keydown)="onKeyDown($event)"&ndash;&gt;-->
-<!--&lt;!&ndash;    (keyup)="onKeyUp($event)"&ndash;&gt;-->
-<!--&lt;!&ndash;    (mouseup)="onTextSelection()"&ndash;&gt;-->
-<!--&lt;!&ndash;    rows="5"&ndash;&gt;-->
-<!--&lt;!&ndash;    cols="60"&ndash;&gt;-->
-<!--&lt;!&ndash;  ></textarea>&ndash;&gt;-->
 
-<!--&lt;!&ndash;  <button (click)="sendKeystrokes()">Submit</button>&ndash;&gt;-->
-<!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-<!--<div>-->
-<!--  <h3>Type the following:</h3>-->
-<!--  <p>{{ prompt }}</p>-->
-<!--  <textarea-->
-<!--    #typingArea-->
-<!--    (keydown)="onKeyDown($event)"-->
-<!--    (keyup)="onKeyUp($event)"-->
-<!--    (mouseup)="onTextSelection()"-->
-<!--    rows="5"-->
-<!--    cols="60"-->
-<!--    placeholder="Type your prompt here..."-->
-<!--  ></textarea>-->
-
-<!--  &lt;!&ndash; Error message display &ndash;&gt;-->
-<!--  <div *ngIf="errorMessage" class="error-message" style="color: red; margin-top: 10px;">-->
-<!--    {{ errorMessage }}-->
-<!--  </div>-->
-
-<!--  &lt;!&ndash; Disable button if the form has been submitted &ndash;&gt;-->
-<!--  <button [disabled]="submitted" (click)="sendKeystrokes()">Submit</button>-->
+<!--<div style="white-space: pre;">-->
+<!--  <span *ngFor="let char of prompt.split(''); let i = index" [ngClass]="getColorClass(i)">-->
+<!--    {{ char }}-->
+<!--  </span>-->
 <!--</div>-->
 
-<!--&lt;!&ndash; src/app/components/typing-area/typing-area.component.html &ndash;&gt;-->
-<!--<textarea #typingArea (keydown)="onKeyDown($event)" (keyup)="onKeyUp($event)"></textarea>-->
-<!--<button (click)="onTextSelection()">Text hervorheben</button>-->
-<!--<button (click)="finalizeSubmission()">Submission abschließen</button>-->
-<!--<p *ngIf="errorMessage">{{ errorMessage }}</p>-->
+<!--<div>-->
+<!--  <textarea-->
+<!--    #typingArea-->
+<!--    [disabled]="promptLocked"-->
+<!--    (keydown)="onKeyDown($event)"-->
+<!--    (keyup)="onKeyUp($event)"-->
+<!--  ></textarea>-->
+<!--</div>-->
+<!--<div>-->
+<!--  &lt;!&ndash; Button, um den Prompt zu fixieren &ndash;&gt;-->
+<!--  <button *ngIf="!promptLocked" (click)="lockPrompt()">-->
+<!--    Set Prompt-->
+<!--  </button>-->
+<!--  &lt;!&ndash; Highlight-Button erst aktiv, wenn der Prompt gesperrt wurde &ndash;&gt;-->
+<!--  <button [disabled]="!promptLocked" (click)="onTextSelection()">Highlight</button>-->
+<!--  <button (click)="finalizeSubmission()">Submit</button>-->
+<!--</div>-->
 
-<!-- src/app/components/typing-area/typing-area.component.html -->
-<!--<textarea #typingArea (keydown)="onKeyDown($event)" (keyup)="onKeyUp($event)"></textarea>-->
-<!--<button (click)="onTextSelection()">send highlight</button>-->
-<!--<button (click)="finalizeSubmission()">final submit</button>-->
-<!--<p *ngIf="errorMessage">{{ errorMessage }}</p>-->
 
+<div style="white-space: pre;">
+  <span *ngFor="let char of prompt.split(''); let i = index" [ngClass]="getColorClass(i)">
+    {{ char }}
+  </span>
+</div>
 
-<!-- src/app/components/typing-area/typing-area.component.html -->
 <div>
   <textarea
     #typingArea
@@ -58,11 +39,10 @@
   ></textarea>
 </div>
 <div>
-  <!-- Button, um den Prompt zu fixieren -->
   <button *ngIf="!promptLocked" (click)="lockPrompt()">
     Set Prompt
   </button>
-  <!-- Highlight-Button erst aktiv, wenn der Prompt gesperrt wurde -->
   <button [disabled]="!promptLocked" (click)="onTextSelection()">Highlight</button>
   <button (click)="finalizeSubmission()">Submit</button>
 </div>
+<div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>

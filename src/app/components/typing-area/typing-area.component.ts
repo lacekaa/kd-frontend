@@ -1,25 +1,26 @@
-// // typescript in src/app/components/typing-area/typing-area.component.ts
 // import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 // import { CommonModule } from '@angular/common';
 // import { Router } from '@angular/router';
 // import { KeystrokeTrackerService } from '../../services/keystroke-tracker.service';
 // import { HighlightService } from '../../services/highlight.service';
 // import { DataProcessingService, PayloadModel } from '../../services/data-processing.service';
+// import {FormsModule} from '@angular/forms';
 //
 // @Component({
 //   selector: 'app-typing-area',
 //   standalone: true,
 //   templateUrl: './typing-area.component.html',
 //   styleUrls: ['./typing-area.component.css'],
-//   imports: [CommonModule],
+//   imports: [CommonModule, FormsModule],
 // })
 // export class TypingAreaComponent implements OnInit {
 //   @ViewChild('typingArea') typingArea!: ElementRef<HTMLTextAreaElement>;
-//   prompt: string = 'Type this sentence to record keystroke data.';
+//   prompt: string = '';
 //   keystrokes: any[] = [];
 //   submitted: boolean = false;
 //   errorMessage: string = '';
-//   promptLocked: boolean = false; // neu: Status, ob der Prompt gesetzt wurde
+//   promptLocked: boolean = false;
+//   highlights: [number, number][] = []; // Array to store highlight ranges
 //
 //   constructor(
 //     private keystrokeTrackerService: KeystrokeTrackerService,
@@ -36,12 +37,24 @@
 //     this.keystrokeTrackerService.setPrompt(this.prompt);
 //   }
 //
-//   // Neu: Methode, um den Prompt zu sperren
+//   getHighlightRanges(): [number, number][] {
+//     return this.highlightService.getHighlights();
+//   }
+//
 //   lockPrompt() {
 //     this.promptLocked = true;
-//     // Sicherstellen, dass der aktuell eingegebene Prompt übernommen wird
 //     const currentPrompt = this.typingArea.nativeElement.value;
 //     this.keystrokeTrackerService.setPrompt(currentPrompt);
+//     this.prompt = currentPrompt;
+//   }
+//
+//   getColorClass(index: number): string {
+//     for (const [start, end] of this.highlights) {
+//       if (index >= start && index < end) {
+//         return 'red';
+//       }
+//     }
+//     return 'black';
 //   }
 //
 //   onKeyDown(event: KeyboardEvent) {
@@ -65,30 +78,34 @@
 //       this.errorMessage = 'Bitte den Prompt zuerst festlegen.';
 //       return;
 //     }
-//     const selection = window.getSelection();
-//     if (selection && selection.toString().trim().length > 0) {
-//       this.highlightService.addHighlight(selection.toString());
-//       this.errorMessage = '';
+//     const textarea = this.typingArea.nativeElement;
+//     const startIdx = textarea.selectionStart;
+//     const endIdx = textarea.selectionEnd;
+//     if (startIdx === endIdx) {
+//       return;
 //     }
+//     // Speichern des Highlight-Bereichs als Tuple von Keystroke_IDs
+//     this.highlightService.addHighlight([startIdx, endIdx]);
+//     this.highlights = this.highlightService.getHighlights();
+//     this.errorMessage = '';
 //   }
 //
 //   sendKeystrokes() {
 //     const currentPrompt = this.typingArea.nativeElement.value;
 //     this.keystrokeTrackerService.setPrompt(currentPrompt);
+//     this.prompt = currentPrompt;
 //     this.keystrokes = this.keystrokeTrackerService.getKeystrokes();
 //   }
 //
 //   finalizeSubmission() {
 //     const currentPrompt = this.typingArea.nativeElement.value;
 //     this.keystrokeTrackerService.setPrompt(currentPrompt);
-//     const highlights: string[] = this.highlightService.getHighlights();
+//     const highlights: [number, number][] = this.highlightService.getHighlights();
 //     if (!highlights || highlights.length === 0) {
-//       this.errorMessage =
-//         'Highlight at least one part of the text before final submission';
+//       this.errorMessage = 'Bitte mindestens einen Highlight-Bereich festlegen, bevor Sie abschicken.';
 //       return;
 //     }
 //     this.keystrokes = this.keystrokeTrackerService.getKeystrokes();
-//     // Aktualisieren aller Keystrokes mit dem finalen Prompt
 //     this.keystrokes.forEach((keystroke) => {
 //       keystroke.prompt = currentPrompt;
 //     });
@@ -100,10 +117,7 @@
 //       keystrokes: this.keystrokes,
 //     };
 //
-//     console.log(
-//       'Payload being sent to the backend:',
-//       payload
-//     ); // Log the payload to the console
+//     console.log('Payload being sent to the backend:', payload);
 //
 //     this.dataProcessingService.submitPayload(payload).subscribe({
 //       next: (response) => {
@@ -120,28 +134,30 @@
 //   }
 // }
 
-// typescript in src/app/components/typing-area/typing-area.component.ts
+
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { KeystrokeTrackerService } from '../../services/keystroke-tracker.service';
 import { HighlightService } from '../../services/highlight.service';
 import { DataProcessingService, PayloadModel } from '../../services/data-processing.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-typing-area',
   standalone: true,
   templateUrl: './typing-area.component.html',
   styleUrls: ['./typing-area.component.css'],
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
 })
 export class TypingAreaComponent implements OnInit {
   @ViewChild('typingArea') typingArea!: ElementRef<HTMLTextAreaElement>;
-  prompt: string = 'Type this sentence to record keystroke data.';
+  prompt: string = '';
   keystrokes: any[] = [];
   submitted: boolean = false;
   errorMessage: string = '';
   promptLocked: boolean = false;
+  highlights: [number, number][] = []; // Array to store highlight ranges
 
   constructor(
     private keystrokeTrackerService: KeystrokeTrackerService,
@@ -158,10 +174,29 @@ export class TypingAreaComponent implements OnInit {
     this.keystrokeTrackerService.setPrompt(this.prompt);
   }
 
+  getHighlightRanges(): [number, number][] {
+    return this.highlightService.getHighlights();
+  }
+
   lockPrompt() {
-    this.promptLocked = true;
     const currentPrompt = this.typingArea.nativeElement.value;
+    if (currentPrompt.length < 10) {
+      this.errorMessage = 'Prompt too short';
+      return;
+    }
+    this.promptLocked = true;
     this.keystrokeTrackerService.setPrompt(currentPrompt);
+    this.prompt = currentPrompt;
+    this.errorMessage = ''; // Clear any previous error message
+  }
+
+  getColorClass(index: number): string {
+    for (const [start, end] of this.highlights) {
+      if (index >= start && index < end) {
+        return 'red';
+      }
+    }
+    return 'black';
   }
 
   onKeyDown(event: KeyboardEvent) {
@@ -191,14 +226,15 @@ export class TypingAreaComponent implements OnInit {
     if (startIdx === endIdx) {
       return;
     }
-    // Speichern des Highlight-Bereichs als Tuple von Keystroke_IDs
     this.highlightService.addHighlight([startIdx, endIdx]);
+    this.highlights = this.highlightService.getHighlights();
     this.errorMessage = '';
   }
 
   sendKeystrokes() {
     const currentPrompt = this.typingArea.nativeElement.value;
     this.keystrokeTrackerService.setPrompt(currentPrompt);
+    this.prompt = currentPrompt;
     this.keystrokes = this.keystrokeTrackerService.getKeystrokes();
   }
 

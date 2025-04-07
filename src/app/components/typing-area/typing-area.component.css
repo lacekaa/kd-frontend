@@ -1,0 +1,63 @@
+/*.red {*/
+/*  color: red;*/
+/*}*/
+
+/*.black {*/
+/*  color: black;*/
+/*}*/
+
+/*.typing-area {*/
+/*  position: relative;*/
+/*}*/
+
+/*.text-display {*/
+/*  position: absolute;*/
+/*  top: 0;*/
+/*  left: 0;*/
+/*  white-space: pre-wrap;*/
+/*  pointer-events: none;*/
+/*}*/
+
+/*.text-input {*/
+/*  position: absolute;*/
+/*  top: 0;*/
+/*  left: 0;*/
+/*  background: transparent;*/
+/*  color: transparent;*/
+/*  caret-color: black;*/
+/*}*/
+
+
+.red {
+  color: red;
+}
+
+.black {
+  color: black;
+}
+
+.typing-area {
+  position: relative;
+}
+
+.text-display {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: pre-wrap;
+  pointer-events: none;
+}
+
+.text-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: transparent;
+  color: transparent;
+  caret-color: black;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
