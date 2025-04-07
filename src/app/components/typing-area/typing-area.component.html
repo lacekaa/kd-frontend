@@ -42,7 +42,27 @@
 <!--<p *ngIf="errorMessage">{{ errorMessage }}</p>-->
 
 <!-- src/app/components/typing-area/typing-area.component.html -->
-<textarea #typingArea (keydown)="onKeyDown($event)" (keyup)="onKeyUp($event)"></textarea>
-<button (click)="onTextSelection()">send highlight</button>
-<button (click)="finalizeSubmission()">final submit</button>
-<p *ngIf="errorMessage">{{ errorMessage }}</p>
+<!--<textarea #typingArea (keydown)="onKeyDown($event)" (keyup)="onKeyUp($event)"></textarea>-->
+<!--<button (click)="onTextSelection()">send highlight</button>-->
+<!--<button (click)="finalizeSubmission()">final submit</button>-->
+<!--<p *ngIf="errorMessage">{{ errorMessage }}</p>-->
+
+
+<!-- src/app/components/typing-area/typing-area.component.html -->
+<div>
+  <textarea
+    #typingArea
+    [disabled]="promptLocked"
+    (keydown)="onKeyDown($event)"
+    (keyup)="onKeyUp($event)"
+  ></textarea>
+</div>
+<div>
+  <!-- Button, um den Prompt zu fixieren -->
+  <button *ngIf="!promptLocked" (click)="lockPrompt()">
+    Set Prompt
+  </button>
+  <!-- Highlight-Button erst aktiv, wenn der Prompt gesperrt wurde -->
+  <button [disabled]="!promptLocked" (click)="onTextSelection()">Highlight</button>
+  <button (click)="finalizeSubmission()">Submit</button>
+</div>

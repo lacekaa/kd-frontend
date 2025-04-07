@@ -1,7 +1,7 @@
 export class Keystroke {
   participantId: string;
   prompt: string;
-  highlights: string[] = [];
+  highlights: [number, number][];
   keystrokeId: number;
   pressTime: number;
   releaseTime: number;
@@ -11,7 +11,7 @@ export class Keystroke {
   constructor(
     participantId: string,
     prompt: string,
-    highlights: string[],
+    highlights: [number, number][],
     keystrokeId: number,
     pressTime: number,
     releaseTime: number,
