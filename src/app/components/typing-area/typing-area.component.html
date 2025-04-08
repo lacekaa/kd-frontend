@@ -1,60 +1,38 @@
-<!--<div style="white-space: pre;">-->
-<!--  <span *ngFor="let char of prompt.split(''); let i = index" [ngClass]="getColorClass(i)">-->
-<!--    {{ char }}-->
-<!--  </span>-->
-<!--</div>-->
+<div class="typing-area-container">
+  <div class="instructions">
+    <p>
+      <strong>Instructions:</strong>
+      <br />
+      Type a text prompt in the box below as if you would interact with systems such as ChatGPT or other models. Once
+      you finish your prompt, hit "Set Prompt". After that, you will not be able to adjust your prompt. Highlight at
+      least one part of your prompt you consider most important and hit "Highlight". Once done, hit "Submit".
+    </p>
+  </div>
 
-<!--<div>-->
-<!--  <textarea-->
-<!--    #typingArea-->
-<!--    [disabled]="promptLocked"-->
-<!--    (keydown)="onKeyDown($event)"-->
-<!--    (keyup)="onKeyUp($event)"-->
-<!--  ></textarea>-->
-<!--</div>-->
-<!--<div>-->
-<!--  &lt;!&ndash; Button, um den Prompt zu fixieren &ndash;&gt;-->
-<!--  <button *ngIf="!promptLocked" (click)="lockPrompt()">-->
-<!--    Set Prompt-->
-<!--  </button>-->
-<!--  &lt;!&ndash; Highlight-Button erst aktiv, wenn der Prompt gesperrt wurde &ndash;&gt;-->
-<!--  <button [disabled]="!promptLocked" (click)="onTextSelection()">Highlight</button>-->
-<!--  <button (click)="finalizeSubmission()">Submit</button>-->
-<!--</div>-->
-<div class="explanation">
-  <p>
-    <strong>Instructions:</strong>
-    <br/>
-    Type a text prompt in the box below as if you would interact with systems such as chatGPT, Gemini or any other
-    model to generate an image. Once you finish your prompt hit "Set prompt". After that you will not be able to adjust
-    your prompt
-    afterwards. After setting the prompt, please highlight at least one part of your prompt you consider most important.
-    You can highlight multiple parts but always hit the "Highlight" button after marking the text. Once you finish your
-    prompt and highlight at least one part of your text, hit "Submit" to send your prompt to finish the study.
-    Example prompt: "Generate an image of an old tree having purple leaves and a blue sky in the background. The tree
-    should be standing alone in a field of grass. The image should be in a realistic style."
-  </p>
-</div>
+  <div class="input-section">
+    <textarea
+      #typingArea
+      class="text-input"
+      [disabled]="promptLocked"
+      (keydown)="onKeyDown($event)"
+      (keyup)="onKeyUp($event)"
+      placeholder="Type your prompt here..."
+    ></textarea>
+    <div class="button-group">
+      <button class="set-prompt-button" *ngIf="!promptLocked" (click)="lockPrompt()">Set Prompt</button>
+      <button class="highlight-button" [disabled]="!promptLocked" (click)="onTextSelection()">Highlight</button>
+      <button class="submit-button" (click)="finalizeSubmission()">Submit</button>
+    </div>
+  </div>
 
-<div class="highlight-display" style="white-space: pre;">
-  <span *ngFor="let char of prompt.split(''); let i = index" [ngClass]="getColorClass(i)">
-    {{ char }}
-  </span>
-</div>
+  <div *ngIf="promptLocked" class="visualization-section">
+    <h3>Prompt Visualization:</h3>
+    <div class="highlight-display">
+      <span *ngFor="let char of prompt.split(''); let i = index" [ngClass]="getColorClass(i)">
+        {{ char }}
+      </span>
+    </div>
+  </div>
 
-<div class="input-container">
-  <textarea
-    #typingArea
-    [disabled]="promptLocked"
-    (keydown)="onKeyDown($event)"
-    (keyup)="onKeyUp($event)"
-  ></textarea>
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
 </div>
-<div>
-  <button class="set-prompt-button" *ngIf="!promptLocked" (click)="lockPrompt()">
-    Set Prompt
-  </button>
-  <button class="highlight-button" [disabled]="!promptLocked" (click)="onTextSelection()">Highlight</button>
-  <button class="submit-button" (click)="finalizeSubmission()">Submit</button>
-</div>
-<div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>

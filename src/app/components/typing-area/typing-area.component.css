@@ -1,32 +1,112 @@
-/*.red {*/
-/*  color: red;*/
-/*}*/
+.typing-area-container {
+  font-family: 'Roboto', sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-/*.black {*/
-/*  color: black;*/
-/*}*/
+.instructions {
+  font-family: 'Roboto', sans-serif;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #555;
+}
 
-/*.typing-area {*/
-/*  position: relative;*/
-/*}*/
+.input-section {
+  margin-bottom: 20px;
+}
 
-/*.text-display {*/
-/*  position: absolute;*/
-/*  top: 0;*/
-/*  left: 0;*/
-/*  white-space: pre-wrap;*/
-/*  pointer-events: none;*/
-/*}*/
+.text-input {
+  width: 100%;
+  height: 150px; /* Adjusted for about 4 sentences */
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: none;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
 
-/*.text-input {*/
-/*  position: absolute;*/
-/*  top: 0;*/
-/*  left: 0;*/
-/*  background: transparent;*/
-/*  color: transparent;*/
-/*  caret-color: black;*/
-/*}*/
+.text-input:disabled {
+  background-color: #f0f0f0;
+  color: #999;
+}
 
+.button-group {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  padding: 8px 16px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.set-prompt-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.set-prompt-button:hover {
+  background-color: #0056b3;
+}
+
+.highlight-button {
+  background-color: #bfd6f8;
+  color: black;
+}
+
+.highlight-button:hover {
+  background-color: #589aff;
+}
+
+.submit-button {
+  background-color: #003b7a;
+  color: white;
+}
+
+.submit-button:hover {
+  background-color: #001530;
+}
+
+.visualization-section {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  text-align: center; /* Zentriert den Text */
+  font-family: 'Roboto', sans-serif; /* Schriftart Roboto */
+}
+
+.visualization-section h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #333;
+}
+
+.highlight-display {
+  white-space: pre;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  text-align: center;
+  display: inline-block;
+  font-variant-ligatures: none;
+  letter-spacing: 0;
+}
+
+.highlight-display span {
+  display: inline-block; /* Verhindert zusätzliche Leerzeichen */
+}
 
 .red {
   color: red;
@@ -36,28 +116,8 @@
   color: black;
 }
 
-.typing-area {
-  position: relative;
-}
-
-.text-display {
-  position: absolute;
-  top: 0;
-  left: 0;
-  white-space: pre-wrap;
-  pointer-events: none;
-}
-
-.text-input {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: transparent;
-  color: transparent;
-  caret-color: black;
-}
-
 .error-message {
-  color: red;
   margin-top: 10px;
+  color: red;
+  font-size: 14px;
 }

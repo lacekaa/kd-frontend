@@ -1,4 +1,24 @@
+.submitted-container {
+  font-family: 'Roboto', sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  /* Flexbox für zentrierte Ausrichtung */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Volle Höhe des Viewports */
+  text-align: center; /* Text zentrieren */
+  box-sizing: border-box; /* Padding in die Höhe einbeziehen */
+}
+
 h1 {
-  text-align: center;
-  margin-top: 50px;
+  font-size: 24px;
+  color: #333;
+  margin: 0; /* Entfernt Standardabstand */
 }
