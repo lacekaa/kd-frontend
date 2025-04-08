@@ -135,13 +135,13 @@
 // }
 
 
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
-import { KeystrokeTrackerService } from '../../services/keystroke-tracker.service';
-import { HighlightService } from '../../services/highlight.service';
-import { DataProcessingService, PayloadModel } from '../../services/data-processing.service';
-import { FormsModule } from '@angular/forms';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {Router} from '@angular/router';
+import {KeystrokeTrackerService} from '../../services/keystroke-tracker.service';
+import {HighlightService} from '../../services/highlight.service';
+import {DataProcessingService, PayloadModel} from '../../services/data-processing.service';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-typing-area',
@@ -164,7 +164,8 @@ export class TypingAreaComponent implements OnInit {
     private highlightService: HighlightService,
     private router: Router,
     private dataProcessingService: DataProcessingService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     const submissionStatus = sessionStorage.getItem('submitted');
@@ -243,7 +244,7 @@ export class TypingAreaComponent implements OnInit {
     this.keystrokeTrackerService.setPrompt(currentPrompt);
     const highlights: [number, number][] = this.highlightService.getHighlights();
     if (!highlights || highlights.length === 0) {
-      this.errorMessage = 'Bitte mindestens einen Highlight-Bereich festlegen, bevor Sie abschicken.';
+      this.errorMessage = 'Please highlight at least one part of your prompt before submitting. You can do this by selecting text with your mouse and hitting "Highlight".';
       return;
     }
     this.keystrokes = this.keystrokeTrackerService.getKeystrokes();

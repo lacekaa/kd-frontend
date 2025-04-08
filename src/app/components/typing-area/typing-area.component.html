@@ -1,4 +1,3 @@
-
 <!--<div style="white-space: pre;">-->
 <!--  <span *ngFor="let char of prompt.split(''); let i = index" [ngClass]="getColorClass(i)">-->
 <!--    {{ char }}-->
@@ -22,15 +21,28 @@
 <!--  <button [disabled]="!promptLocked" (click)="onTextSelection()">Highlight</button>-->
 <!--  <button (click)="finalizeSubmission()">Submit</button>-->
 <!--</div>-->
+<div class="explanation">
+  <p>
+    <strong>Instructions:</strong>
+    <br/>
+    Type a text prompt in the box below as if you would interact with systems such as chatGPT, Gemini or any other
+    model to generate an image. Once you finish your prompt hit "Set prompt". After that you will not be able to adjust
+    your prompt
+    afterwards. After setting the prompt, please highlight at least one part of your prompt you consider most important.
+    You can highlight multiple parts but always hit the "Highlight" button after marking the text. Once you finish your
+    prompt and highlight at least one part of your text, hit "Submit" to send your prompt to finish the study.
+    Example prompt: "Generate an image of an old tree having purple leaves and a blue sky in the background. The tree
+    should be standing alone in a field of grass. The image should be in a realistic style."
+  </p>
+</div>
 
-
-<div style="white-space: pre;">
+<div class="highlight-display" style="white-space: pre;">
   <span *ngFor="let char of prompt.split(''); let i = index" [ngClass]="getColorClass(i)">
     {{ char }}
   </span>
 </div>
 
-<div>
+<div class="input-container">
   <textarea
     #typingArea
     [disabled]="promptLocked"
@@ -39,10 +51,10 @@
   ></textarea>
 </div>
 <div>
-  <button *ngIf="!promptLocked" (click)="lockPrompt()">
+  <button class="set-prompt-button" *ngIf="!promptLocked" (click)="lockPrompt()">
     Set Prompt
   </button>
-  <button [disabled]="!promptLocked" (click)="onTextSelection()">Highlight</button>
-  <button (click)="finalizeSubmission()">Submit</button>
+  <button class="highlight-button" [disabled]="!promptLocked" (click)="onTextSelection()">Highlight</button>
+  <button class="submit-button" (click)="finalizeSubmission()">Submit</button>
 </div>
 <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
