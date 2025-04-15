@@ -93,27 +93,57 @@ button {
   color: #333;
 }
 
-.highlight-display {
-  white-space: pre;
-  font-size: 16px;
-  line-height: 1.5;
-  color: #333;
-  text-align: center;
-  display: inline-block;
-  font-variant-ligatures: none;
-  letter-spacing: 0;
-}
+/*.highlight-display {*/
+/*  white-space: pre;*/
+/*  font-size: 16px;*/
+/*  line-height: 1.5;*/
+/*  color: inherit;*/
+/*  text-align: center;*/
+/*  display: inline-block;*/
+/*  font-variant-ligatures: none;*/
+/*  letter-spacing: 0;*/
+/*}*/
 
 .highlight-display span {
   display: inline-block; /* Verhindert zusätzliche Leerzeichen */
 }
 
-.red {
-  color: red;
+.highlight-display {
+  white-space: pre-wrap; /* Zeilenumbrüche beibehalten */
+  word-wrap: break-word; /* Lange Wörter umbrechen */
+  font-size: 16px;
+  line-height: 1.5;
+  color: inherit;
+  text-align: left; /* Optional: Text linksbündig */
+  max-width: 100%; /* Begrenzung der Breite */
+  overflow-wrap: break-word; /* Textumbruch bei Überlauf */
 }
 
-.black {
-  color: black;
+/*.red {*/
+/*  color: red;*/
+/*}*/
+
+/*.black {*/
+/*  color: black;*/
+/*}*/
+
+/*.green {*/
+/*  color: green;*/
+/*}*/
+
+.highlight-display {
+  color: inherit; /* Prevent overriding child span colors */
+}
+::ng-deep .highlight-display span.red {
+  color: red !important;
+}
+
+::ng-deep .highlight-display span.green {
+  color: green !important;
+}
+
+::ng-deep .highlight-display span.black {
+  color: black !important;
 }
 
 .error-message {

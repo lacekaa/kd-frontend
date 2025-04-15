@@ -1,140 +1,3 @@
-// import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-// import { CommonModule } from '@angular/common';
-// import { Router } from '@angular/router';
-// import { KeystrokeTrackerService } from '../../services/keystroke-tracker.service';
-// import { HighlightService } from '../../services/highlight.service';
-// import { DataProcessingService, PayloadModel } from '../../services/data-processing.service';
-// import {FormsModule} from '@angular/forms';
-//
-// @Component({
-//   selector: 'app-typing-area',
-//   standalone: true,
-//   templateUrl: './typing-area.component.html',
-//   styleUrls: ['./typing-area.component.css'],
-//   imports: [CommonModule, FormsModule],
-// })
-// export class TypingAreaComponent implements OnInit {
-//   @ViewChild('typingArea') typingArea!: ElementRef<HTMLTextAreaElement>;
-//   prompt: string = '';
-//   keystrokes: any[] = [];
-//   submitted: boolean = false;
-//   errorMessage: string = '';
-//   promptLocked: boolean = false;
-//   highlights: [number, number][] = []; // Array to store highlight ranges
-//
-//   constructor(
-//     private keystrokeTrackerService: KeystrokeTrackerService,
-//     private highlightService: HighlightService,
-//     private router: Router,
-//     private dataProcessingService: DataProcessingService
-//   ) {}
-//
-//   ngOnInit(): void {
-//     const submissionStatus = sessionStorage.getItem('submitted');
-//     if (submissionStatus === 'true') {
-//       this.router.navigate(['/thank-you']);
-//     }
-//     this.keystrokeTrackerService.setPrompt(this.prompt);
-//   }
-//
-//   getHighlightRanges(): [number, number][] {
-//     return this.highlightService.getHighlights();
-//   }
-//
-//   lockPrompt() {
-//     this.promptLocked = true;
-//     const currentPrompt = this.typingArea.nativeElement.value;
-//     this.keystrokeTrackerService.setPrompt(currentPrompt);
-//     this.prompt = currentPrompt;
-//   }
-//
-//   getColorClass(index: number): string {
-//     for (const [start, end] of this.highlights) {
-//       if (index >= start && index < end) {
-//         return 'red';
-//       }
-//     }
-//     return 'black';
-//   }
-//
-//   onKeyDown(event: KeyboardEvent) {
-//     if (this.promptLocked) {
-//       return;
-//     }
-//     const currentPrompt = this.typingArea.nativeElement.value;
-//     this.keystrokeTrackerService.setPrompt(currentPrompt);
-//     this.keystrokeTrackerService.trackKeydown(event);
-//   }
-//
-//   onKeyUp(event: KeyboardEvent) {
-//     if (this.promptLocked) {
-//       return;
-//     }
-//     this.keystrokeTrackerService.trackKeyup(event);
-//   }
-//
-//   onTextSelection() {
-//     if (!this.promptLocked) {
-//       this.errorMessage = 'Bitte den Prompt zuerst festlegen.';
-//       return;
-//     }
-//     const textarea = this.typingArea.nativeElement;
-//     const startIdx = textarea.selectionStart;
-//     const endIdx = textarea.selectionEnd;
-//     if (startIdx === endIdx) {
-//       return;
-//     }
-//     // Speichern des Highlight-Bereichs als Tuple von Keystroke_IDs
-//     this.highlightService.addHighlight([startIdx, endIdx]);
-//     this.highlights = this.highlightService.getHighlights();
-//     this.errorMessage = '';
-//   }
-//
-//   sendKeystrokes() {
-//     const currentPrompt = this.typingArea.nativeElement.value;
-//     this.keystrokeTrackerService.setPrompt(currentPrompt);
-//     this.prompt = currentPrompt;
-//     this.keystrokes = this.keystrokeTrackerService.getKeystrokes();
-//   }
-//
-//   finalizeSubmission() {
-//     const currentPrompt = this.typingArea.nativeElement.value;
-//     this.keystrokeTrackerService.setPrompt(currentPrompt);
-//     const highlights: [number, number][] = this.highlightService.getHighlights();
-//     if (!highlights || highlights.length === 0) {
-//       this.errorMessage = 'Bitte mindestens einen Highlight-Bereich festlegen, bevor Sie abschicken.';
-//       return;
-//     }
-//     this.keystrokes = this.keystrokeTrackerService.getKeystrokes();
-//     this.keystrokes.forEach((keystroke) => {
-//       keystroke.prompt = currentPrompt;
-//     });
-//     const uniqueParticipantId = this.keystrokeTrackerService.getParticipantId();
-//     const payload: PayloadModel = {
-//       participantId: uniqueParticipantId,
-//       prompt: currentPrompt,
-//       highlights: highlights,
-//       keystrokes: this.keystrokes,
-//     };
-//
-//     console.log('Payload being sent to the backend:', payload);
-//
-//     this.dataProcessingService.submitPayload(payload).subscribe({
-//       next: (response) => {
-//         console.log('Response from backend:', response);
-//         this.keystrokeTrackerService.resetKeystrokes();
-//         sessionStorage.setItem('submitted', 'true');
-//         this.submitted = true;
-//         this.router.navigate(['/thank-you']);
-//       },
-//       error: (err) => {
-//         console.error('Error submitting payload:', err);
-//       },
-//     });
-//   }
-// }
-
-
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {Router} from '@angular/router';
@@ -158,6 +21,7 @@ export class TypingAreaComponent implements OnInit {
   errorMessage: string = '';
   promptLocked: boolean = false;
   highlights: [number, number][] = []; // Array to store highlight ranges
+  lowlights: [number, number][] = []; // Array to store lowlight ranges
 
   constructor(
     private keystrokeTrackerService: KeystrokeTrackerService,
@@ -191,10 +55,16 @@ export class TypingAreaComponent implements OnInit {
     this.errorMessage = ''; // Clear any previous error message
   }
 
+  // (Optional) This function is no longer used by the new getFormattedPrompt() method.
   getColorClass(index: number): string {
     for (const [start, end] of this.highlights) {
       if (index >= start && index < end) {
         return 'red';
+      }
+      for (const [start, end] of this.highlights) {
+        if (index >= start && index < end) {
+          return 'green';
+        }
       }
     }
     return 'black';
@@ -216,6 +86,16 @@ export class TypingAreaComponent implements OnInit {
     this.keystrokeTrackerService.trackKeyup(event);
   }
 
+  updateFormattedPrompt() {
+    const formattedPrompt = this.getFormattedPrompt();
+    console.log('Formatted Prompt:', formattedPrompt); // Debugging output
+    const displayElement = document.getElementById('formattedPromptContainer');
+    if (displayElement) {
+      displayElement.innerHTML = ''; // Clear existing content
+      displayElement.innerHTML = formattedPrompt; // Add the updated content
+    }
+  }
+
   onTextSelection() {
     if (!this.promptLocked) {
       this.errorMessage = 'Bitte den Prompt zuerst festlegen.';
@@ -227,10 +107,51 @@ export class TypingAreaComponent implements OnInit {
     if (startIdx === endIdx) {
       return;
     }
-    this.highlightService.addHighlight([startIdx, endIdx]);
-    this.highlights = this.highlightService.getHighlights();
+
+    // Remove the range from lowlights if it exists there
+    this.lowlights = this.lowlights.filter(([start, end]) => !(start === startIdx && end === endIdx));
+
+    // Avoid duplicate highlights
+    if (!this.highlights.some(([start, end]) => start === startIdx && end === endIdx)) {
+      this.highlightService.addHighlight([startIdx, endIdx]);
+      this.highlights = this.highlightService.getHighlights();
+    }
+
     this.errorMessage = '';
+    this.prompt = this.typingArea.nativeElement.value;
+
+    // Update the visualization after updating highlights
+    this.updateFormattedPrompt();
   }
+
+  onTextSelectionLow() {
+    if (!this.promptLocked) {
+      this.errorMessage = 'Bitte den Prompt zuerst festlegen.';
+      return;
+    }
+    const textarea = this.typingArea.nativeElement;
+    const startIdx = textarea.selectionStart;
+    const endIdx = textarea.selectionEnd;
+    if (startIdx === endIdx) {
+      return;
+    }
+
+    // Remove the range from highlights if it exists there
+    this.highlights = this.highlights.filter(([start, end]) => !(start === startIdx && end === endIdx));
+
+    // Avoid duplicate lowlights
+    if (!this.lowlights.some(([start, end]) => start === startIdx && end === endIdx)) {
+      this.highlightService.addLowlight([startIdx, endIdx]);
+      this.lowlights = this.highlightService.getLowlights();
+    }
+
+    this.errorMessage = '';
+    this.prompt = this.typingArea.nativeElement.value;
+
+    // Update the visualization after updating lowlights
+    this.updateFormattedPrompt();
+  }
+
 
   sendKeystrokes() {
     const currentPrompt = this.typingArea.nativeElement.value;
@@ -239,10 +160,59 @@ export class TypingAreaComponent implements OnInit {
     this.keystrokes = this.keystrokeTrackerService.getKeystrokes();
   }
 
+  /**
+   * Returns the prompt as a formatted HTML string.
+   * This method segments the prompt based on the highlight ranges (stored in this.highlights).
+   * Segments outside any highlight range are wrapped in a span with class "black", and
+   * segments within a highlight range are wrapped in a span with class "red".
+   *
+   * Future: To add anti_highlights, include them in the segmentation logic below.
+   */
+  getFormattedPrompt(): string {
+    if (!this.prompt) {
+      return '';
+    }
+
+    const promptArray = this.prompt.split(''); // Split the prompt into individual characters
+    const formattedPrompt = promptArray.map((char, index) => {
+      // Determine the color class for each character
+      let colorClass = 'black';
+      for (const [start, end] of this.highlights) {
+        if (index >= start && index < end) {
+          colorClass = 'red';
+          break;
+        }
+      }
+      for (const [start, end] of this.lowlights) {
+        if (index >= start && index < end) {
+          colorClass = 'green';
+          break;
+        }
+      }
+      // Return the character wrapped with a span and the appropriate class
+      return `<span class="${colorClass}">${this.escapeHtml(char)}</span>`;
+    });
+
+    return formattedPrompt.join(''); // Join the characters back into a single string
+  }
+
+  /**
+   * Escapes special HTML characters for safe display.
+   */
+  escapeHtml(text: string): string {
+    return text
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
   finalizeSubmission() {
     const currentPrompt = this.typingArea.nativeElement.value;
     this.keystrokeTrackerService.setPrompt(currentPrompt);
     const highlights: [number, number][] = this.highlightService.getHighlights();
+    const lowlights: [number, number][] = this.highlightService.getLowlights();
     if (!highlights || highlights.length === 0) {
       this.errorMessage = 'Please highlight at least one part of your prompt before submitting. You can do this by selecting text with your mouse and hitting "Highlight".';
       return;
@@ -256,6 +226,7 @@ export class TypingAreaComponent implements OnInit {
       participantId: uniqueParticipantId,
       prompt: currentPrompt,
       highlights: highlights,
+      lowlights: lowlights,
       keystrokes: this.keystrokes,
     };
 

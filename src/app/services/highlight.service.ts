@@ -1,31 +1,3 @@
-// import { Injectable } from '@angular/core';
-//
-// @Injectable({
-//   providedIn: 'root',
-// })
-// export class HighlightService {
-//   private highlightText: string = '';
-//   private highlights: string[] = [];
-//
-//   setHighlight(text: string) {
-//     this.highlightText = text;
-//   }
-//
-//   getHighlight(): string {
-//     return this.highlightText;
-//   }
-//
-//   addHighlight(text: string) {
-//     this.highlights.push(text);
-//   }
-//
-//   getHighlights(): string[] {
-//     return this.highlights;
-//   }
-// }
-
-
-// typescript in src/app/services/highlight.service.ts
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -33,12 +5,25 @@ import { Injectable } from '@angular/core';
 })
 export class HighlightService {
   private highlights: [number, number][] = [];
+  private lowLights: [number, number][] = [];
 
   addHighlight(range: [number, number]) {
-    this.highlights.push(range);
+    if (!this.highlights.some(([start, end]) => start === range[0] && end === range[1])) {
+      this.highlights.push(range);
+    }
+  }
+
+  addLowlight(range: [number, number]) {
+    if (!this.lowLights.some(([start, end]) => start === range[0] && end === range[1])) {
+      this.lowLights.push(range);
+    }
   }
 
   getHighlights(): [number, number][] {
     return this.highlights;
+  }
+
+  getLowlights(): [number, number][] {
+    return this.lowLights;
   }
 }

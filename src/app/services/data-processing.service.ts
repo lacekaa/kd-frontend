@@ -40,6 +40,7 @@ export interface PayloadModel {
   participantId: string;
   prompt: string;
   highlights: [number, number][]; // Typ angepasst auf Number-Tupel
+  lowlights: [number, number][]; // Typ angepasst auf Number-Tupel
   keystrokes: {
     keystrokeId: number;
     pressTime: number;

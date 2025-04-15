@@ -87,6 +87,7 @@ export class KeystrokeTrackerService {
   private participantId: string = uuidv4();
   private prompt = '';
   private highlights: [number, number][] = [];
+  private lowlights: [number, number][] = [];
   keystrokesUpdated = new Subject<Keystroke[]>();
 
   constructor() {}
@@ -114,6 +115,7 @@ export class KeystrokeTrackerService {
         this.participantId,
         this.prompt,
         this.highlights,
+        this.lowlights,
         this.keystrokeIdCounter++,
         pressTime,
         0,
