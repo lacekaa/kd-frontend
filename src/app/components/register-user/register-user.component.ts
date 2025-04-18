@@ -1,30 +1,34 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
-import {NgIf} from '@angular/common';
-import {Router} from '@angular/router';
-import {KeystrokeTrackerService} from '../../services/keystroke-tracker.service';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { NgIf } from '@angular/common';
+import { Router } from '@angular/router';
+import { KeystrokeTrackerService } from '../../services/keystroke-tracker.service';
 
 @Component({
   selector: 'app-register-user',
   standalone: true,
-  imports: [
-    NgIf
-  ],
+  imports: [NgIf],
   templateUrl: './register-user.component.html',
-  styleUrl: './register-user.component.css'
+  styleUrl: './register-user.component.css',
 })
 export class RegisterUserComponent {
   @ViewChild('prolificId') prolificIdInput!: ElementRef<HTMLInputElement>;
   prolificId: string = '';
+  frequency: string = ''; // New property for frequency
   errorMessage: string = '';
 
   constructor(
     private router: Router,
-    private keystrokeTrackerService: KeystrokeTrackerService) {
-  }
+    private keystrokeTrackerService: KeystrokeTrackerService
+  ) {}
 
   onProlificIdChange(event: Event) {
     const input = event.target as HTMLInputElement;
     this.prolificId = input.value;
+  }
+
+  onFrequencyChange(event: Event) {
+    const select = event.target as HTMLSelectElement;
+    this.frequency = select.value;
   }
 
   validateProlificId(): boolean {
@@ -39,11 +43,13 @@ export class RegisterUserComponent {
   }
 
   submitProlificId() {
-    if (this.validateProlificId()) {
+    if (this.validateProlificId() && this.frequency) {
       this.keystrokeTrackerService.setId(this.prolificId);
-      // sessionStorage.setItem('submitted', 'true');
-      this.router.navigate(['/typing-area']);
       console.log('Prolific ID:', this.prolificId);
+      console.log('Frequency:', this.frequency); // Log the frequency
+      this.router.navigate(['/typing-area']);
+    } else {
+      this.errorMessage = 'Please fill in all fields.';
     }
   }
 }

@@ -1,6 +1,20 @@
 <div class="register-user-container">
   <h1>Please enter your Prolific ID</h1>
-  <input type="text" #prolificId (input)="onProlificIdChange($event)" placeholder="Prolific ID" />
+  <input
+    type="text"
+    #prolificId
+    (input)="onProlificIdChange($event)"
+    placeholder="Prolific ID"
+  />
+  <label for="frequency">How often do you use this service?</label>
+  <select id="frequency" (change)="onFrequencyChange($event)">
+    <option value="" disabled selected>Select frequency</option>
+    <option value="Never">Never</option>
+    <option value="Rarely">Rarely</option>
+    <option value="Sometimes">Sometimes</option>
+    <option value="Often">Often</option>
+    <option value="Always">Always</option>
+  </select>
   <button (click)="submitProlificId()">Submit</button>
   <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
 </div>
