@@ -68,6 +68,15 @@ button {
   background-color: #589aff;
 }
 
+.lowlight-button {
+  background-color: #6ca9ff;
+  color: black;
+}
+
+.lowlight-button:hover {
+  background-color: #2585ff;
+}
+
 .submit-button {
   background-color: #003b7a;
   color: white;
