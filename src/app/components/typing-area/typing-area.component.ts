@@ -222,6 +222,7 @@ export class TypingAreaComponent implements OnInit {
       keystroke.prompt = currentPrompt;
     });
     const uniqueParticipantId = this.keystrokeTrackerService.getParticipantId();
+    const frequency = this.keystrokeTrackerService.getFrequency();
     const payload: PayloadModel = {
       participantId: uniqueParticipantId,
       prompt: currentPrompt,

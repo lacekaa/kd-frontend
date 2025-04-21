@@ -1,5 +1,6 @@
 export class Keystroke {
   participantId: string;
+  frequency: string;
   prompt: string;
   highlights: [number, number][];
   lowlights: [number, number][];
@@ -11,6 +12,7 @@ export class Keystroke {
 
   constructor(
     participantId: string,
+    frequency: string,
     prompt: string,
     highlights: [number, number][],
     lowlights: [number, number][],
@@ -21,6 +23,7 @@ export class Keystroke {
     keycode: number
   ) {
     this.participantId = participantId;
+    this.frequency = frequency;
     this.prompt = prompt;
     this.highlights = highlights;
     this.lowlights = lowlights;

@@ -45,9 +45,10 @@ export class RegisterUserComponent {
   submitProlificId() {
     if (this.validateProlificId() && this.frequency) {
       this.keystrokeTrackerService.setId(this.prolificId);
+      this.keystrokeTrackerService.setFrequency(this.frequency);
       console.log('Prolific ID:', this.prolificId);
       console.log('Frequency:', this.frequency); // Log the frequency
-      this.router.navigate(['/typing-area']);
+      this.router.navigate(['/explanation']);
     } else {
       this.errorMessage = 'Please fill in all fields.';
     }

@@ -73,24 +73,26 @@
 // }
 
 // typescript in src/app/services/keystroke-tracker.service.ts
-import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
-import { Keystroke } from '../keystroke.model';
-import { v4 as uuidv4 } from 'uuid';
+import {Injectable} from '@angular/core';
+import {Subject} from 'rxjs';
+import {Keystroke} from '../keystroke.model';
+import {v4 as uuidv4} from 'uuid';
 
 @Injectable({
   providedIn: 'root',
 })
 export class KeystrokeTrackerService {
   private keystrokes: Keystroke[] = [];
-  private keystrokeIdCounter = 0; // Startet jetzt bei 0
+  private keystrokeIdCounter = 0;
   private participantId: string = uuidv4();
+  private frequency: string = '';
   private prompt = '';
   private highlights: [number, number][] = [];
   private lowlights: [number, number][] = [];
   keystrokesUpdated = new Subject<Keystroke[]>();
 
-  constructor() {}
+  constructor() {
+  }
 
   setId(participantId: string) {
     this.participantId = participantId;
@@ -98,6 +100,14 @@ export class KeystrokeTrackerService {
 
   getParticipantId(): string {
     return this.participantId;
+  }
+
+  setFrequency(frequency: string) {
+    this.frequency = frequency;
+  }
+
+  getFrequency(): string {
+    return this.frequency;
   }
 
   setPrompt(prompt: string) {
@@ -113,6 +123,7 @@ export class KeystrokeTrackerService {
     this.keystrokes.push(
       new Keystroke(
         this.participantId,
+        this.frequency,
         this.prompt,
         this.highlights,
         this.lowlights,
