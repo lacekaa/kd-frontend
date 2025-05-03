@@ -14,33 +14,9 @@ RUN npm ci
 # 3. Copy source files & build
 COPY . .
 # outputPath is defined in angular.json as "dist/kd-frontend"
-RUN npm run build -- --output-path=dist/kd-frontend
+RUN npm run build
 
-# ─── Stage 2: Serve with Nginx ───────────────────────────────────────────────────
-FROM nginx:stable-alpine
+# ─── Stage 2: Serve with http-server ───────────────────────────────────────────────────
+CMD ["npx", "http-server", "-p", "80", "dist/kd-frontend/browser"]
 
-# 4. Remove default static assets
-RUN rm -rf /usr/share/nginx/html/*
-
-# 5. Copy built files from the previous stage
-COPY --from=build /app/dist/kd-frontend /usr/share/nginx/html
-
-# 6. (Optional) If you use HTML5 pushState routing, add:
-#    COPY nginx.conf /etc/nginx/conf.d/default.conf
-#
-#    And create an nginx.conf alongside this Dockerfile:
-#    ```
-#    server {
-#      listen 80;
-#      server_name _;
-#      root /usr/share/nginx/html;
-#      index index.html;
-#      location / {
-#        try_files $uri $uri/ /index.html;
-#      }
-#    }
-#    ```
-
-# 7. Expose port 80 and run Nginx
 EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
