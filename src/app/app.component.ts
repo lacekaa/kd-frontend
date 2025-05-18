@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {RouterModule, RouterOutlet} from '@angular/router';
 import {TypingAreaComponent} from './components/typing-area/typing-area.component';
 // import {FinishButtonComponent} from './components/finish-button/finish-button.component';
@@ -15,4 +15,12 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 })
 export class AppComponent {
   title = 'kd-frontend';
+
+  constructor() {
+    // Verhindert das Zurückgehen im Browser
+    history.pushState(null, '', location.href);
+    window.onpopstate = () => {
+      history.pushState(null, '', location.href);
+    };
+  }
 }

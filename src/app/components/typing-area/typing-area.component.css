@@ -60,21 +60,21 @@ button {
 }
 
 .highlight-button {
-  background-color: #bfd6f8;
+  background-color: #00ff22;
   color: black;
 }
 
 .highlight-button:hover {
-  background-color: #589aff;
+  background-color: #048c15;
 }
 
 .lowlight-button {
-  background-color: #6ca9ff;
+  background-color: #4ec1ff;
   color: black;
 }
 
 .lowlight-button:hover {
-  background-color: #2585ff;
+  background-color: #0584bc;
 }
 
 .submit-button {
@@ -144,11 +144,11 @@ button {
   color: inherit; /* Prevent overriding child span colors */
 }
 ::ng-deep .highlight-display span.red {
-  color: red !important;
+  color: #00ff22 !important;
 }
 
 ::ng-deep .highlight-display span.green {
-  color: green !important;
+  color: #4ec1ff !important;
 }
 
 ::ng-deep .highlight-display span.black {

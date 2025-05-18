@@ -20,6 +20,7 @@ export class TypingAreaComponent implements OnInit {
   submitted: boolean = false;
   errorMessage: string = '';
   promptLocked: boolean = false;
+  highlightSet: boolean = false;
   highlights: [number, number][] = []; // Array to store highlight ranges
   lowlights: [number, number][] = []; // Array to store lowlight ranges
 
@@ -98,7 +99,7 @@ export class TypingAreaComponent implements OnInit {
 
   onTextSelection() {
     if (!this.promptLocked) {
-      this.errorMessage = 'Bitte den Prompt zuerst festlegen.';
+      this.errorMessage = 'Please set the prompt first.';
       return;
     }
     const textarea = this.typingArea.nativeElement;
@@ -119,7 +120,7 @@ export class TypingAreaComponent implements OnInit {
 
     this.errorMessage = '';
     this.prompt = this.typingArea.nativeElement.value;
-
+    this.highlightSet = true;
     // Update the visualization after updating highlights
     this.updateFormattedPrompt();
   }
