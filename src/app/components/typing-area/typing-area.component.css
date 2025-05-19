@@ -123,7 +123,7 @@ button {
   font-size: 16px;
   line-height: 1.5;
   color: inherit;
-  text-align: left; /* Optional: Text linksbündig */
+  text-align: center; /* Optional: Text linksbündig */
   max-width: 100%; /* Begrenzung der Breite */
   overflow-wrap: break-word; /* Textumbruch bei Überlauf */
 }

@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {CommonModule, PlatformLocation} from '@angular/common';
 import {Router} from '@angular/router';
 import {KeystrokeTrackerService} from '../../services/keystroke-tracker.service';
 import {HighlightService} from '../../services/highlight.service';
@@ -28,8 +28,14 @@ export class TypingAreaComponent implements OnInit {
     private keystrokeTrackerService: KeystrokeTrackerService,
     private highlightService: HighlightService,
     private router: Router,
-    private dataProcessingService: DataProcessingService
+    private dataProcessingService: DataProcessingService,
+    private platformLocation: PlatformLocation
   ) {
+    // Verhindert das Zurückgehen im Browser
+    history.pushState(null, '', location.href);
+    this.platformLocation.onPopState(() => {
+      history.pushState(null, '', location.href);
+    });
   }
 
   ngOnInit(): void {

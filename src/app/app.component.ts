@@ -5,6 +5,7 @@ import {TypingAreaComponent} from './components/typing-area/typing-area.componen
 import {HighlightService} from './services/highlight.service';
 import {KeystrokeTrackerService} from './services/keystroke-tracker.service';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {PlatformLocation} from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -16,11 +17,11 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 export class AppComponent {
   title = 'kd-frontend';
 
-  constructor() {
+  constructor(private platformLocation: PlatformLocation) {
     // Verhindert das Zurückgehen im Browser
     history.pushState(null, '', location.href);
-    window.onpopstate = () => {
+    this.platformLocation.onPopState(() =>{
       history.pushState(null, '', location.href);
-    };
+    });
   }
 }
