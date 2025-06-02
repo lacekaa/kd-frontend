@@ -1,19 +1,19 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {CommonModule, PlatformLocation} from '@angular/common';
-import {Router} from '@angular/router';
+import {Component, ElementRef, ViewChild} from '@angular/core';
+import {NgIf, PlatformLocation} from '@angular/common';
 import {KeystrokeTrackerService} from '../../services/keystroke-tracker.service';
 import {HighlightService} from '../../services/highlight.service';
+import {Router} from '@angular/router';
 import {DataProcessingService, PayloadModel} from '../../services/data-processing.service';
-import {FormsModule} from '@angular/forms';
 
 @Component({
-  selector: 'app-typing-area',
-  standalone: true,
-  templateUrl: './typing-area.component.html',
-  styleUrls: ['./typing-area.component.css'],
-  imports: [CommonModule, FormsModule],
+  selector: 'app-text-to-prompt',
+  imports: [
+    NgIf
+  ],
+  templateUrl: './text-to-prompt.component.html',
+  styleUrl: './text-to-prompt.component.css'
 })
-export class TypingAreaComponent implements OnInit {
+export class TextToPromptComponent {
   @ViewChild('typingArea') typingArea!: ElementRef<HTMLTextAreaElement>;
   prompt: string = '';
   keystrokes: any[] = [];
@@ -23,7 +23,7 @@ export class TypingAreaComponent implements OnInit {
   highlightSet: boolean = false;
   highlights: [number, number][] = [];
   lowlights: [number, number][] = [];
-  experimentType: string = 'free'; // Default experiment type
+  experimentType: string = 'text-to-prompt';
   experimentAttempt: number = 0;
 
   constructor(
@@ -267,9 +267,9 @@ export class TypingAreaComponent implements OnInit {
         this.submitted = true;
 
         if (this.experimentAttempt === 1) {
-          this.router.navigate(['/typing-area']);
-        } else if (this.experimentAttempt === 2) {
           this.router.navigate(['/text-to-prompt']);
+        } else if (this.experimentAttempt === 2) {
+          this.router.navigate(['/image-to-prompt']);
         }
       },
       error: (err) => {
