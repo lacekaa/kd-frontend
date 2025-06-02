@@ -14,11 +14,20 @@
   align-items: center;
   height: 100vh; /* Volle Höhe des Viewports */
   text-align: center; /* Text zentrieren */
-  box-sizing: border-box; /* Padding in die Höhe einbeziehen */
+  box-sizing: border-box; /* Padding in die Höhe einbezaiehen */
 }
 
 h1 {
   font-size: 24px;
   color: #333;
   margin: 0; /* Entfernt Standardabstand */
+}
+
+::ng-deep .submit-button {
+  background-color: #4ec1ff !important;
+  color: black;
+}
+
+::ng-deep .submit-button:hover {
+  background-color: #0584bc !important;
 }

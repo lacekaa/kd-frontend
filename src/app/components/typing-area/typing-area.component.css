@@ -13,7 +13,21 @@
   font-family: 'Roboto', sans-serif;
   margin-bottom: 20px;
   font-size: 14px;
-  color: #555;
+  color: black;
+}
+.instructions2 {
+  font-family: 'Roboto', sans-serif;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: black;
+}
+
+.instructions1-headline{
+  color: #368bfa;
+}
+
+.instructions2-headline{
+  color: #ff51fb;
 }
 
 .input-section {
@@ -148,11 +162,7 @@ button {
 }
 
 ::ng-deep .highlight-display span.green {
-<<<<<<< HEAD
-  color: #2bda2c !important;
-=======
   color: #4ec1ff !important;
->>>>>>> bd43e5ce9b80052e3c3ded251d377f03995666d4
 }
 
 ::ng-deep .highlight-display span.black {

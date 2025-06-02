@@ -54,7 +54,7 @@ export interface PayloadModel {
   providedIn: 'root',
 })
 export class DataProcessingService {
-  private apiUrl = 'http://localhost:5018/api/data-processing/submit';
+  private apiUrl = 'https://keystroke-backend.hcigroup.de/api/data-processing/submit';
 
   constructor(private http: HttpClient) {}
 
