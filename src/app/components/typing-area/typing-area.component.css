@@ -148,7 +148,7 @@ button {
 }
 
 ::ng-deep .highlight-display span.green {
-  color: green !important;
+  color: #2bda2c !important;
 }
 
 ::ng-deep .highlight-display span.black {
