@@ -1,7 +1,7 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { NgIf } from '@angular/common';
-import { Router } from '@angular/router';
-import { KeystrokeTrackerService } from '../../services/keystroke-tracker.service';
+import {Component, ElementRef, ViewChild} from '@angular/core';
+import {NgIf, PlatformLocation} from '@angular/common';
+import {Router} from '@angular/router';
+import {KeystrokeTrackerService} from '../../services/keystroke-tracker.service';
 
 @Component({
   selector: 'app-register-user',
@@ -18,8 +18,14 @@ export class RegisterUserComponent {
 
   constructor(
     private router: Router,
-    private keystrokeTrackerService: KeystrokeTrackerService
-  ) {}
+    private keystrokeTrackerService: KeystrokeTrackerService,
+    private platformLocation: PlatformLocation
+  ) {
+    history.pushState(null, '', location.href);
+    this.platformLocation.onPopState(() => {
+      history.pushState(null, '', location.href);
+    });
+  }
 
   onProlificIdChange(event: Event) {
     const input = event.target as HTMLInputElement;
