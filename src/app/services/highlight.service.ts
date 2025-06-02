@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
@@ -25,5 +25,13 @@ export class HighlightService {
 
   getLowlights(): [number, number][] {
     return this.lowLights;
+  }
+
+  clearHighlights() {
+    this.highlights = [];
+  }
+
+  clearLowlights() {
+    this.lowLights = [];
   }
 }

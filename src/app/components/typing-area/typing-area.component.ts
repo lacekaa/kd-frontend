@@ -21,8 +21,10 @@ export class TypingAreaComponent implements OnInit {
   errorMessage: string = '';
   promptLocked: boolean = false;
   highlightSet: boolean = false;
-  highlights: [number, number][] = []; // Array to store highlight ranges
-  lowlights: [number, number][] = []; // Array to store lowlight ranges
+  highlights: [number, number][] = [];
+  lowlights: [number, number][] = [];
+  experimentType: string = 'free'; // Default experiment type
+  experimentAttempt: number = 0;
 
   constructor(
     private keystrokeTrackerService: KeystrokeTrackerService,
@@ -232,21 +234,43 @@ export class TypingAreaComponent implements OnInit {
     const frequency = this.keystrokeTrackerService.getFrequency();
     const payload: PayloadModel = {
       participantId: uniqueParticipantId,
+      experimentType: this.experimentType,
+      experimentAttempt: this.experimentAttempt,
       prompt: currentPrompt,
       highlights: highlights,
       lowlights: lowlights,
       keystrokes: this.keystrokes,
     };
 
+    // increase experimentAttempt by 1
+    this.experimentAttempt++;
+
     console.log('Payload being sent to the backend:', payload);
 
     this.dataProcessingService.submitPayload(payload).subscribe({
       next: (response) => {
         console.log('Response from backend:', response);
+
+        // Reset the input field and related properties
+        this.typingArea.nativeElement.value = ''; // Clear the textarea
+        this.prompt = ''; // Reset the prompt property
         this.keystrokeTrackerService.resetKeystrokes();
+        this.highlights = [];
+        this.lowlights = [];
+        this.highlightService.clearHighlights();
+        this.highlightService.clearLowlights();
+        this.errorMessage = '';
+        this.promptLocked = false;
+        this.highlightSet = false;
+
         sessionStorage.setItem('submitted', 'true');
         this.submitted = true;
-        this.router.navigate(['/thank-you']);
+
+        if (this.experimentAttempt === 1) {
+          this.router.navigate(['/typing-area']);
+        } else if (this.experimentAttempt === 2) {
+          this.router.navigate(['/thank-you']);
+        }
       },
       error: (err) => {
         console.error('Error submitting payload:', err);

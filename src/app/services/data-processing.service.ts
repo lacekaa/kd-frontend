@@ -38,9 +38,11 @@ import { Observable } from 'rxjs';
 
 export interface PayloadModel {
   participantId: string;
+  experimentType: string,
+  experimentAttempt: number,
   prompt: string;
-  highlights: [number, number][]; // Typ angepasst auf Number-Tupel
-  lowlights: [number, number][]; // Typ angepasst auf Number-Tupel
+  highlights: [number, number][];
+  lowlights: [number, number][];
   keystrokes: {
     keystrokeId: number;
     pressTime: number;
@@ -54,7 +56,7 @@ export interface PayloadModel {
   providedIn: 'root',
 })
 export class DataProcessingService {
-  private apiUrl = 'https://keystroke-backend.hcigroup.de/api/data-processing/submit';
+  private apiUrl = 'http://localhost:5018/api/data-processing/submit';
 
   constructor(private http: HttpClient) {}
 
