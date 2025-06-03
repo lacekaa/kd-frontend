@@ -40,11 +40,15 @@ export class TypingAreaComponent implements OnInit {
     });
   }
 
+  // ngOnInit(): void {
+  //   const submissionStatus = sessionStorage.getItem('submitted');
+  //   if (submissionStatus === 'true') {
+  //     this.router.navigate(['/text-to-prompt']);
+  //   }
+  //   this.keystrokeTrackerService.setPrompt(this.prompt);
+  // }
+
   ngOnInit(): void {
-    const submissionStatus = sessionStorage.getItem('submitted');
-    if (submissionStatus === 'true') {
-      this.router.navigate(['/thank-you']);
-    }
     this.keystrokeTrackerService.setPrompt(this.prompt);
   }
 
@@ -242,7 +246,7 @@ export class TypingAreaComponent implements OnInit {
       keystrokes: this.keystrokes,
     };
 
-    // increase experimentAttempt by 1
+    // Increase experimentAttempt by 1
     this.experimentAttempt++;
 
     console.log('Payload being sent to the backend:', payload);
@@ -263,13 +267,19 @@ export class TypingAreaComponent implements OnInit {
         this.promptLocked = false;
         this.highlightSet = false;
 
-        sessionStorage.setItem('submitted', 'true');
-        this.submitted = true;
-
-        if (this.experimentAttempt === 1) {
-          this.router.navigate(['/typing-area']);
-        } else if (this.experimentAttempt === 2) {
-          this.router.navigate(['/text-to-prompt']);
+        // Control navigation based on experimentAttempt
+        if (this.experimentType === 'free') {
+          if (this.experimentAttempt === 2) {
+            this.router.navigate(['/text-to-prompt']);
+          }
+        } else if (this.experimentType === 'text-to-prompt') {
+          if (this.experimentAttempt === 2) {
+            this.router.navigate(['/image-to-prompt']);
+          }
+        } else if (this.experimentType === 'image-to-prompt') {
+          if (this.experimentAttempt === 2) {
+            this.router.navigate(['/thank-you']);
+          }
         }
       },
       error: (err) => {
