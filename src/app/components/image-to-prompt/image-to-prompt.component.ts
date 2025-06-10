@@ -20,6 +20,7 @@ export class ImageToPromptComponent {
   submitted: boolean = false;
   errorMessage: string = '';
   promptLocked: boolean = false;
+  secondAttempt: boolean = false;
   highlightSet: boolean = false;
   highlights: [number, number][] = [];
   lowlights: [number, number][] = [];
@@ -81,6 +82,10 @@ export class ImageToPromptComponent {
       }
     }
     return 'black';
+  }
+
+  enterSecondAttempt(){
+    this.secondAttempt = true;
   }
 
   onKeyDown(event: KeyboardEvent) {
@@ -266,6 +271,7 @@ export class ImageToPromptComponent {
         this.errorMessage = '';
         this.promptLocked = false;
         this.highlightSet = false;
+        this.enterSecondAttempt();
 
         // Control navigation based on experimentAttempt
         if (this.experimentType === 'free') {

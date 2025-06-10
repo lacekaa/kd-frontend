@@ -20,6 +20,7 @@ export class TextToPromptComponent {
   submitted: boolean = false;
   errorMessage: string = '';
   promptLocked: boolean = false;
+  secondAttempt: boolean = false;
   highlightSet: boolean = false;
   highlights: [number, number][] = [];
   lowlights: [number, number][] = [];
@@ -54,6 +55,10 @@ export class TextToPromptComponent {
 
   getHighlightRanges(): [number, number][] {
     return this.highlightService.getHighlights();
+  }
+
+  enterSecondAttempt() {
+    this.secondAttempt = true;
   }
 
   lockPrompt() {
@@ -266,6 +271,7 @@ export class TextToPromptComponent {
         this.errorMessage = '';
         this.promptLocked = false;
         this.highlightSet = false;
+        this.enterSecondAttempt();
 
         // Control navigation based on experimentAttempt
         if (this.experimentType === 'free') {

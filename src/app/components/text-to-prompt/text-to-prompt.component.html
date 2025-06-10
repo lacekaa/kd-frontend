@@ -7,6 +7,39 @@
     Type a text prompt in the box below that you consider might lead to the text output shown here. Once
     you finish your prompt, hit "Set Prompt". After that, you will not be able to adjust your prompt.
   </div>
+  <div class="text1" *ngIf="!secondAttempt">
+    In a quiet jungle dojo, a pink elephant named Tofu practiced karate with thunderous grace, his raccoon best friend,
+    Zippy, always cheering from the sidelines. When a gang of mischievous monkeys stole the dojo’s sacred scroll, Tofu
+    and Zippy embarked on a whirlwind adventure through bamboo forests and river rapids to retrieve it. Using a flawless
+    spinning tusk kick and Zippy’s clever distraction tactics, they defeated the monkeys and restored honor to their
+    dojo. From that day on, the jungle whispered tales of the pink karate elephant and his fearless raccoon sidekick.
+  </div>
+  <div class="text2" *ngIf="secondAttempt">
+    In a sunbeam throne of golden light,
+    Reigns Carrot, queen of feline might.
+    Her fur a blaze of orange flame,
+    The nap-born monarch—dream her name.
+
+    No perch too high, no place too loud,
+    She sleeps on fence posts, soft or proud.
+    A rustling world may spin and race,
+    But Carrot slips through time and space.
+
+    With half-closed eyes and gentle purr,
+    She leaves the waking world a blur.
+    For in her dreams she rules unseen—
+    A velvet sky, a starlit queen.
+
+    Some say her soul was stitched in sleep,
+    Where mountains drift and oceans creep.
+    And when she stirs, just for a breath,
+    She brings back tales from realms past death.
+
+    So hush, and watch her whiskers twitch—
+    She’s leaping castles in a twitch.
+    For Carrot’s truth lies not in day,
+    But where the dreaming cats all play.
+  </div>
   <div class="instructions2" *ngIf="promptLocked">
     <div class="instructions2-headline">
       <strong>Instructions 2:</strong>
@@ -32,7 +65,7 @@
       <button class="set-prompt-button" *ngIf="!promptLocked" (click)="lockPrompt()">Set Prompt</button>
       <button class="highlight-button" *ngIf="promptLocked" (click)="onTextSelection()">Important</button>
       <button class="lowlight-button" *ngIf="promptLocked" (click)="onTextSelectionLow()">Unimportant</button>
-      <button class="submit-button" *ngIf ="highlightSet" (click)="finalizeSubmission()">Submit</button>
+      <button class="submit-button" *ngIf="highlightSet" (click)="finalizeSubmission()">Submit</button>
     </div>
   </div>
 
