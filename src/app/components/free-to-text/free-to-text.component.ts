@@ -1,24 +1,23 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {CommonModule, PlatformLocation} from '@angular/common';
-import {Router} from '@angular/router';
 import {KeystrokeTrackerService} from '../../services/keystroke-tracker.service';
 import {HighlightService} from '../../services/highlight.service';
+import {Router} from '@angular/router';
 import {DataProcessingService, PayloadModel} from '../../services/data-processing.service';
-import {FormsModule} from '@angular/forms';
+import {NgIf, PlatformLocation} from '@angular/common';
 
 @Component({
-  selector: 'app-typing-area',
-  standalone: true,
-  templateUrl: './typing-area.component.html',
-  styleUrls: ['./typing-area.component.css'],
-  imports: [CommonModule, FormsModule],
+  selector: 'app-free-to-text',
+  imports: [
+    NgIf
+  ],
+  templateUrl: './free-to-text.component.html',
+  styleUrl: './free-to-text.component.css'
 })
-export class TypingAreaComponent implements OnInit {
+export class FreeToTextComponent implements OnInit{
   @ViewChild('typingArea') typingArea!: ElementRef<HTMLTextAreaElement>;
   prompt: string = '';
   keystrokes: any[] = [];
   submitted: boolean = false;
-  experimentState: [number,number,number,number] = [0, 0, 0, 0]; // [typing-area, free-to-text, image-to-prompt, text-to-prompt]
   errorMessage: string = '';
   promptLocked: boolean = false;
   highlightSet: boolean = false;
@@ -55,14 +54,6 @@ export class TypingAreaComponent implements OnInit {
 
   getHighlightRanges(): [number, number][] {
     return this.highlightService.getHighlights();
-  }
-
-  public getExperimentState(): [number, number, number, number] {
-    return this.experimentState;
-  }
-
-  public setExperimentState(state: [number, number, number, number]): void {
-    this.experimentState = state;
   }
 
   lockPrompt() {
