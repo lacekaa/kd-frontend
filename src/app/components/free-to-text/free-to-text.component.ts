@@ -4,6 +4,7 @@ import {HighlightService} from '../../services/highlight.service';
 import {Router} from '@angular/router';
 import {DataProcessingService, PayloadModel} from '../../services/data-processing.service';
 import {NgIf, PlatformLocation} from '@angular/common';
+import {ExperimentManagerService} from '../../services/experiment-manager.service';
 
 @Component({
   selector: 'app-free-to-text',
@@ -31,7 +32,8 @@ export class FreeToTextComponent implements OnInit{
     private highlightService: HighlightService,
     private router: Router,
     private dataProcessingService: DataProcessingService,
-    private platformLocation: PlatformLocation
+    private platformLocation: PlatformLocation,
+    private experimentManagerService: ExperimentManagerService
   ) {
     // Verhindert das Zurückgehen im Browser
     history.pushState(null, '', location.href);
@@ -268,19 +270,23 @@ export class FreeToTextComponent implements OnInit{
         this.highlightSet = false;
 
         // Control navigation based on experimentAttempt
-        if (this.experimentType === 'free') {
-          if (this.experimentAttempt === 2) {
-            this.router.navigate(['/text-to-prompt']);
-          }
-        } else if (this.experimentType === 'text-to-prompt') {
-          if (this.experimentAttempt === 2) {
-            this.router.navigate(['/image-to-prompt']);
-          }
-        } else if (this.experimentType === 'image-to-prompt') {
-          if (this.experimentAttempt === 2) {
-            this.router.navigate(['/thank-you']);
-          }
-        }
+        // if (this.experimentType === 'free') {
+        //   if (this.experimentAttempt === 2) {
+        //     this.router.navigate(['/text-to-prompt']);
+        //   }
+        // } else if (this.experimentType === 'text-to-prompt') {
+        //   if (this.experimentAttempt === 2) {
+        //     this.router.navigate(['/image-to-prompt']);
+        //   }
+        // } else if (this.experimentType === 'image-to-prompt') {
+        //   if (this.experimentAttempt === 2) {
+        //     this.router.navigate(['/thank-you']);
+        //   }
+        // }
+        this.experimentManagerService.incrementSubmissionCount('free-to-text');
+
+        // Navigate to the next component
+        this.experimentManagerService.moveToNextComponent();
       },
       error: (err) => {
         console.error('Error submitting payload:', err);

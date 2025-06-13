@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { PlatformLocation } from '@angular/common';
+import { ExperimentManagerService } from '../../services/experiment-manager.service';
 
 @Component({
   selector: 'app-explanation',
@@ -8,15 +9,19 @@ import { PlatformLocation } from '@angular/common';
   styleUrls: ['./explanation.component.css']
 })
 export class ExplanationComponent {
-  constructor(private router: Router, private platformLocation: PlatformLocation) {
-    // Verhindert das Zurückgehen im Browser
+  constructor(
+    private router: Router,
+    private platformLocation: PlatformLocation,
+    private experimentManager: ExperimentManagerService
+  ) {
+    // Prevent navigating back in the browser
     history.pushState(null, '', location.href);
     this.platformLocation.onPopState(() => {
       history.pushState(null, '', location.href);
     });
   }
 
-  navigateToTyping(): void {
-    this.router.navigate(['/typing-area']);
+  navigateToFirstComponent(): void {
+    this.experimentManager.startExperiment(); // Start the experiment and navigate to the first component
   }
 }

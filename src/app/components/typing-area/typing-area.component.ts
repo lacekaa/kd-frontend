@@ -5,6 +5,7 @@ import {KeystrokeTrackerService} from '../../services/keystroke-tracker.service'
 import {HighlightService} from '../../services/highlight.service';
 import {DataProcessingService, PayloadModel} from '../../services/data-processing.service';
 import {FormsModule} from '@angular/forms';
+import {ExperimentManagerService} from '../../services/experiment-manager.service';
 
 @Component({
   selector: 'app-typing-area',
@@ -31,6 +32,7 @@ export class TypingAreaComponent implements OnInit {
     private keystrokeTrackerService: KeystrokeTrackerService,
     private highlightService: HighlightService,
     private router: Router,
+    private experimentManagerService: ExperimentManagerService,
     private dataProcessingService: DataProcessingService,
     private platformLocation: PlatformLocation
   ) {
@@ -277,19 +279,23 @@ export class TypingAreaComponent implements OnInit {
         this.highlightSet = false;
 
         // Control navigation based on experimentAttempt
-        if (this.experimentType === 'free') {
-          if (this.experimentAttempt === 2) {
-            this.router.navigate(['/text-to-prompt']);
-          }
-        } else if (this.experimentType === 'text-to-prompt') {
-          if (this.experimentAttempt === 2) {
-            this.router.navigate(['/image-to-prompt']);
-          }
-        } else if (this.experimentType === 'image-to-prompt') {
-          if (this.experimentAttempt === 2) {
-            this.router.navigate(['/thank-you']);
-          }
-        }
+        // if (this.experimentType === 'free') {
+        //   if (this.experimentAttempt === 2) {
+        //     this.router.navigate(['/text-to-prompt']);
+        //   }
+        // } else if (this.experimentType === 'text-to-prompt') {
+        //   if (this.experimentAttempt === 2) {
+        //     this.router.navigate(['/image-to-prompt']);
+        //   }
+        // } else if (this.experimentType === 'image-to-prompt') {
+        //   if (this.experimentAttempt === 2) {
+        //     this.router.navigate(['/thank-you']);
+        //   }
+        // }
+        this.experimentManagerService.incrementSubmissionCount('typing-area');
+
+        // Navigate to the next component
+        this.experimentManagerService.moveToNextComponent();
       },
       error: (err) => {
         console.error('Error submitting payload:', err);

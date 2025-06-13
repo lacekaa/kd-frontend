@@ -4,6 +4,7 @@ import {HighlightService} from '../../services/highlight.service';
 import {Router} from '@angular/router';
 import {DataProcessingService, PayloadModel} from '../../services/data-processing.service';
 import {NgIf, PlatformLocation} from '@angular/common';
+import {ExperimentManagerService} from '../../services/experiment-manager.service';
 
 @Component({
   selector: 'app-image-to-prompt',
@@ -32,6 +33,7 @@ export class ImageToPromptComponent {
     private highlightService: HighlightService,
     private router: Router,
     private dataProcessingService: DataProcessingService,
+    private experimentManagerService: ExperimentManagerService,
     private platformLocation: PlatformLocation
   ) {
     // Verhindert das Zurückgehen im Browser
@@ -51,6 +53,8 @@ export class ImageToPromptComponent {
 
   ngOnInit(): void {
     this.keystrokeTrackerService.setPrompt(this.prompt);
+    this.experimentAttempt = this.experimentManagerService.getSubmissionCount('image-to-prompt');
+    this.secondAttempt = this.experimentAttempt === 1;
   }
 
   getHighlightRanges(): [number, number][] {
@@ -274,19 +278,23 @@ export class ImageToPromptComponent {
         this.enterSecondAttempt();
 
         // Control navigation based on experimentAttempt
-        if (this.experimentType === 'free') {
-          if (this.experimentAttempt === 2) {
-            this.router.navigate(['/text-to-prompt']);
-          }
-        } else if (this.experimentType === 'text-to-prompt') {
-          if (this.experimentAttempt === 2) {
-            this.router.navigate(['/image-to-prompt']);
-          }
-        } else if (this.experimentType === 'image-to-prompt') {
-          if (this.experimentAttempt === 2) {
-            this.router.navigate(['/thank-you']);
-          }
-        }
+        // if (this.experimentType === 'free') {
+        //   if (this.experimentAttempt === 2) {
+        //     this.router.navigate(['/text-to-prompt']);
+        //   }
+        // } else if (this.experimentType === 'text-to-prompt') {
+        //   if (this.experimentAttempt === 2) {
+        //     this.router.navigate(['/image-to-prompt']);
+        //   }
+        // } else if (this.experimentType === 'image-to-prompt') {
+        //   if (this.experimentAttempt === 2) {
+        //     this.router.navigate(['/thank-you']);
+        //   }
+        // }
+        this.experimentManagerService.incrementSubmissionCount('image-to-prompt');
+
+        // Navigate to the next component
+        this.experimentManagerService.moveToNextComponent();
       },
       error: (err) => {
         console.error('Error submitting payload:', err);
