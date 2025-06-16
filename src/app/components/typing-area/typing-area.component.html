@@ -4,7 +4,8 @@
       <strong>Instructions 1:</strong>
     </div>
     <br/>
-    TYPING AREA: Type a text prompt in the box below as if you would like to create an image through artificial intelligence with it. Once
+    Type a text prompt in the box below as if you would like to create an image through artificial
+    intelligence with it. Once
     you finish your prompt, hit "Set Prompt". After that, you will not be able to adjust your prompt.
   </div>
   <div class="instructions2" *ngIf="promptLocked">
@@ -13,7 +14,8 @@
     </div>
     <br/>
     Now highlight at least one part of your prompt you consider important and hit "Important".
-    If you consider some parts of your prompt unimportant, you can highlight them and hit "Unimportant".
+    If you consider some parts of your prompt unimportant, you can highlight them and hit "Unimportant".You can
+    highlight text with your mouse by clicking and dragging over the text.
     Once done, hit "Submit".
 
     Note: You can only highlight parts inside the prompt box above, the visualization box below is read-only.
@@ -32,7 +34,7 @@
       <button class="set-prompt-button" *ngIf="!promptLocked" (click)="lockPrompt()">Set Prompt</button>
       <button class="highlight-button" *ngIf="promptLocked" (click)="onTextSelection()">Important</button>
       <button class="lowlight-button" *ngIf="promptLocked" (click)="onTextSelectionLow()">Unimportant</button>
-      <button class="submit-button" *ngIf ="highlightSet" (click)="finalizeSubmission()">Submit</button>
+      <button class="submit-button" *ngIf="highlightSet" (click)="finalizeSubmission()">Submit</button>
     </div>
   </div>
 

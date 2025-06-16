@@ -28,20 +28,14 @@
   text-align: justify;
 }
 
-.image-container1 img {
+.image-container img {
   max-width: 20%;
   height: auto;
   margin-bottom: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-.image-container2 img {
-  max-width: 20%;
-  height: auto;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+
 
 .start-button {
   background-color: #007bff;

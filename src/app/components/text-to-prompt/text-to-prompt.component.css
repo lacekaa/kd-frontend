@@ -186,3 +186,10 @@ button {
   display: flex;
   justify-content: center;
 }
+
+.text1{
+  font-style: italic;
+}
+.text2{
+  font-style: italic;
+}
