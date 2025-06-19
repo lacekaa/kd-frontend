@@ -21,6 +21,7 @@ export class ExplanationComponent {
     });
   }
 
+
   navigateToFirstComponent(): void {
     this.experimentManager.startExperiment(); // Start the experiment and navigate to the first component
   }

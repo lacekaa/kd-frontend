@@ -24,8 +24,9 @@ export class FreeToTextComponent implements OnInit{
   highlightSet: boolean = false;
   highlights: [number, number][] = [];
   lowlights: [number, number][] = [];
-  experimentType: string = 'free'; // Default experiment type
+  experimentType: string = 'prompt-to-text'; // Default experiment type
   experimentAttempt: number = 0;
+  secondAttempt: boolean = false;
 
   constructor(
     private keystrokeTrackerService: KeystrokeTrackerService,
@@ -52,6 +53,8 @@ export class FreeToTextComponent implements OnInit{
 
   ngOnInit(): void {
     this.keystrokeTrackerService.setPrompt(this.prompt);
+    this.experimentAttempt = this.experimentManagerService.getSubmissionCount('free-to-text');
+    this.secondAttempt = this.experimentAttempt === 1;
   }
 
   getHighlightRanges(): [number, number][] {
@@ -70,19 +73,8 @@ export class FreeToTextComponent implements OnInit{
     this.errorMessage = ''; // Clear any previous error message
   }
 
-  // (Optional) This function is no longer used by the new getFormattedPrompt() method.
-  getColorClass(index: number): string {
-    for (const [start, end] of this.highlights) {
-      if (index >= start && index < end) {
-        return 'red';
-      }
-      for (const [start, end] of this.highlights) {
-        if (index >= start && index < end) {
-          return 'green';
-        }
-      }
-    }
-    return 'black';
+  enterSecondAttempt() {
+    this.secondAttempt = true;
   }
 
   onKeyDown(event: KeyboardEvent) {
@@ -268,22 +260,8 @@ export class FreeToTextComponent implements OnInit{
         this.errorMessage = '';
         this.promptLocked = false;
         this.highlightSet = false;
-
-        // Control navigation based on experimentAttempt
-        // if (this.experimentType === 'free') {
-        //   if (this.experimentAttempt === 2) {
-        //     this.router.navigate(['/text-to-prompt']);
-        //   }
-        // } else if (this.experimentType === 'text-to-prompt') {
-        //   if (this.experimentAttempt === 2) {
-        //     this.router.navigate(['/image-to-prompt']);
-        //   }
-        // } else if (this.experimentType === 'image-to-prompt') {
-        //   if (this.experimentAttempt === 2) {
-        //     this.router.navigate(['/thank-you']);
-        //   }
-        // }
         this.experimentManagerService.incrementSubmissionCount('free-to-text');
+        this.enterSecondAttempt();
 
         // Navigate to the next component
         this.experimentManagerService.moveToNextComponent();

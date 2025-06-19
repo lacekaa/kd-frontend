@@ -277,20 +277,6 @@ export class ImageToPromptComponent {
         this.highlightSet = false;
         this.enterSecondAttempt();
 
-        // Control navigation based on experimentAttempt
-        // if (this.experimentType === 'free') {
-        //   if (this.experimentAttempt === 2) {
-        //     this.router.navigate(['/text-to-prompt']);
-        //   }
-        // } else if (this.experimentType === 'text-to-prompt') {
-        //   if (this.experimentAttempt === 2) {
-        //     this.router.navigate(['/image-to-prompt']);
-        //   }
-        // } else if (this.experimentType === 'image-to-prompt') {
-        //   if (this.experimentAttempt === 2) {
-        //     this.router.navigate(['/thank-you']);
-        //   }
-        // }
         this.experimentManagerService.incrementSubmissionCount('image-to-prompt');
 
         // Navigate to the next component

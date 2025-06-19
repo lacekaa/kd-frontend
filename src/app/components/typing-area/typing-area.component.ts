@@ -19,14 +19,15 @@ export class TypingAreaComponent implements OnInit {
   prompt: string = '';
   keystrokes: any[] = [];
   submitted: boolean = false;
-  experimentState: [number,number,number,number] = [0, 0, 0, 0]; // [typing-area, free-to-text, image-to-prompt, text-to-prompt]
+  experimentState: [number, number, number, number] = [0, 0, 0, 0]; // [typing-area, free-to-text, image-to-prompt, text-to-prompt]
   errorMessage: string = '';
   promptLocked: boolean = false;
   highlightSet: boolean = false;
   highlights: [number, number][] = [];
   lowlights: [number, number][] = [];
-  experimentType: string = 'free'; // Default experiment type
+  experimentType: string = 'prompt-to-image'; // Default experiment type
   experimentAttempt: number = 0;
+  secondAttempt: boolean = false;
 
   constructor(
     private keystrokeTrackerService: KeystrokeTrackerService,
@@ -53,6 +54,8 @@ export class TypingAreaComponent implements OnInit {
 
   ngOnInit(): void {
     this.keystrokeTrackerService.setPrompt(this.prompt);
+    this.experimentAttempt = this.experimentManagerService.getSubmissionCount('typing-area');
+    this.secondAttempt = this.experimentAttempt === 1;
   }
 
   getHighlightRanges(): [number, number][] {
@@ -65,6 +68,10 @@ export class TypingAreaComponent implements OnInit {
 
   public setExperimentState(state: [number, number, number, number]): void {
     this.experimentState = state;
+  }
+
+  enterSecondAttempt() {
+    this.secondAttempt = true;
   }
 
   lockPrompt() {
@@ -277,21 +284,8 @@ export class TypingAreaComponent implements OnInit {
         this.errorMessage = '';
         this.promptLocked = false;
         this.highlightSet = false;
+        this.enterSecondAttempt();
 
-        // Control navigation based on experimentAttempt
-        // if (this.experimentType === 'free') {
-        //   if (this.experimentAttempt === 2) {
-        //     this.router.navigate(['/text-to-prompt']);
-        //   }
-        // } else if (this.experimentType === 'text-to-prompt') {
-        //   if (this.experimentAttempt === 2) {
-        //     this.router.navigate(['/image-to-prompt']);
-        //   }
-        // } else if (this.experimentType === 'image-to-prompt') {
-        //   if (this.experimentAttempt === 2) {
-        //     this.router.navigate(['/thank-you']);
-        //   }
-        // }
         this.experimentManagerService.incrementSubmissionCount('typing-area');
 
         // Navigate to the next component
