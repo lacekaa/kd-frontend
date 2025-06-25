@@ -21,6 +21,8 @@ export class ImageToPromptComponent {
   submitted: boolean = false;
   errorMessage: string = '';
   promptLocked: boolean = false;
+  importantTrue:boolean = false;
+  unimportantTrue:boolean = false;
   secondAttempt: boolean = false;
   highlightSet: boolean = false;
   highlights: [number, number][] = [];

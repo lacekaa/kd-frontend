@@ -22,6 +22,8 @@ export class TypingAreaComponent implements OnInit {
   experimentState: [number, number, number, number] = [0, 0, 0, 0]; // [typing-area, free-to-text, image-to-prompt, text-to-prompt]
   errorMessage: string = '';
   promptLocked: boolean = false;
+  importantTrue:boolean = false;
+  unimportantTrue:boolean = false;
   highlightSet: boolean = false;
   highlights: [number, number][] = [];
   lowlights: [number, number][] = [];

@@ -21,6 +21,8 @@ export class FreeToTextComponent implements OnInit{
   submitted: boolean = false;
   errorMessage: string = '';
   promptLocked: boolean = false;
+  importantTrue:boolean = false;
+  unimportantTrue:boolean = false;
   highlightSet: boolean = false;
   highlights: [number, number][] = [];
   lowlights: [number, number][] = [];
