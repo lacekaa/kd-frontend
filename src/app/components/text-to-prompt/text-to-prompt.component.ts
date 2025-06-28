@@ -143,7 +143,13 @@ export class TextToPromptComponent {
 
     this.errorMessage = '';
     this.prompt = this.typingArea.nativeElement.value;
-    this.highlightSet = true;
+    // this.highlightSet = true;
+
+    this.importantTrue = true;
+    if (this.importantTrue && this.unimportantTrue) {
+      this.highlightSet = true;
+    }
+
     // Update the visualization after updating highlights
     this.updateFormattedPrompt();
   }
@@ -171,6 +177,12 @@ export class TextToPromptComponent {
 
     this.errorMessage = '';
     this.prompt = this.typingArea.nativeElement.value;
+
+    this.unimportantTrue = true;
+
+    if (this.importantTrue && this.unimportantTrue) {
+      this.highlightSet = true;
+    }
 
     // Update the visualization after updating lowlights
     this.updateFormattedPrompt();

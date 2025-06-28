@@ -128,7 +128,12 @@ export class FreeToTextComponent implements OnInit{
 
     this.errorMessage = '';
     this.prompt = this.typingArea.nativeElement.value;
-    this.highlightSet = true;
+    // this.highlightSet = true;
+    this.importantTrue = true;
+    if (this.importantTrue && this.unimportantTrue) {
+      this.highlightSet = true;
+    }
+
     // Update the visualization after updating highlights
     this.updateFormattedPrompt();
   }
@@ -154,9 +159,14 @@ export class FreeToTextComponent implements OnInit{
       this.lowlights = this.highlightService.getLowlights();
     }
 
+    this.unimportantTrue = true;
+
+    if (this.importantTrue && this.unimportantTrue) {
+      this.highlightSet = true;
+    }
+
     this.errorMessage = '';
     this.prompt = this.typingArea.nativeElement.value;
-
     // Update the visualization after updating lowlights
     this.updateFormattedPrompt();
   }
