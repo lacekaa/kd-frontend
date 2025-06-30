@@ -40,6 +40,7 @@ export interface PayloadModel {
   participantId: string;
   experimentType: string,
   experimentAttempt: number,
+  totalAttempt: number,
   prompt: string;
   highlights: [number, number][];
   lowlights: [number, number][];

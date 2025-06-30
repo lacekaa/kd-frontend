@@ -5,6 +5,7 @@ import {HighlightService} from '../../services/highlight.service';
 import {Router} from '@angular/router';
 import {DataProcessingService, PayloadModel} from '../../services/data-processing.service';
 import {ExperimentManagerService} from '../../services/experiment-manager.service';
+import {GlobalCountService} from '../../services/global-count.service';
 
 @Component({
   selector: 'app-text-to-prompt',
@@ -29,6 +30,7 @@ export class TextToPromptComponent {
   lowlights: [number, number][] = [];
   experimentType: string = 'text-to-prompt';
   experimentAttempt: number = 0;
+  currentTotalAttempt: number = 0;
 
   constructor(
     private keystrokeTrackerService: KeystrokeTrackerService,
@@ -36,6 +38,7 @@ export class TextToPromptComponent {
     private router: Router,
     private dataProcessingService: DataProcessingService,
     private experimentManagerService: ExperimentManagerService,
+    private globalCountService: GlobalCountService,
     private platformLocation: PlatformLocation
   ) {
     // Verhindert das Zurückgehen im Browser
@@ -263,6 +266,7 @@ export class TextToPromptComponent {
       participantId: uniqueParticipantId,
       experimentType: this.experimentType,
       experimentAttempt: this.experimentAttempt,
+      totalAttempt: this.globalCountService.getCount(),
       prompt: currentPrompt,
       highlights: highlights,
       lowlights: lowlights,
@@ -306,6 +310,8 @@ export class TextToPromptComponent {
         //   }
         // }
         this.experimentManagerService.incrementSubmissionCount('text-to-prompt');
+        this.globalCountService.incrementCount();
+        console.log('Global count incremented:', this.globalCountService.getCount());
 
         // Navigate to the next component
         this.experimentManagerService.moveToNextComponent();

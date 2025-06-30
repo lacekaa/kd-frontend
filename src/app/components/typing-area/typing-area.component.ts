@@ -6,6 +6,7 @@ import {HighlightService} from '../../services/highlight.service';
 import {DataProcessingService, PayloadModel} from '../../services/data-processing.service';
 import {FormsModule} from '@angular/forms';
 import {ExperimentManagerService} from '../../services/experiment-manager.service';
+import {GlobalCountService} from '../../services/global-count.service';
 
 @Component({
   selector: 'app-typing-area',
@@ -29,6 +30,7 @@ export class TypingAreaComponent implements OnInit {
   lowlights: [number, number][] = [];
   experimentType: string = 'prompt-to-image'; // Default experiment type
   experimentAttempt: number = 0;
+  currentTotalAttempt: number = 0;
   secondAttempt: boolean = false;
 
   constructor(
@@ -37,6 +39,7 @@ export class TypingAreaComponent implements OnInit {
     private router: Router,
     private experimentManagerService: ExperimentManagerService,
     private dataProcessingService: DataProcessingService,
+    private globalCountService: GlobalCountService,
     private platformLocation: PlatformLocation
   ) {
     // Verhindert das Zurückgehen im Browser
@@ -58,6 +61,7 @@ export class TypingAreaComponent implements OnInit {
     this.keystrokeTrackerService.setPrompt(this.prompt);
     this.experimentAttempt = this.experimentManagerService.getSubmissionCount('typing-area');
     this.secondAttempt = this.experimentAttempt === 1;
+    this.currentTotalAttempt = this.globalCountService.getCount();
   }
 
   getHighlightRanges(): [number, number][] {
@@ -271,6 +275,7 @@ export class TypingAreaComponent implements OnInit {
       participantId: uniqueParticipantId,
       experimentType: this.experimentType,
       experimentAttempt: this.experimentAttempt,
+      totalAttempt: this.globalCountService.getCount(),
       prompt: currentPrompt,
       highlights: highlights,
       lowlights: lowlights,
@@ -300,6 +305,8 @@ export class TypingAreaComponent implements OnInit {
         this.enterSecondAttempt();
 
         this.experimentManagerService.incrementSubmissionCount('typing-area');
+        this.globalCountService.incrementCount();
+        console.log('Global count incremented:', this.globalCountService.getCount());
 
         // Navigate to the next component
         this.experimentManagerService.moveToNextComponent();

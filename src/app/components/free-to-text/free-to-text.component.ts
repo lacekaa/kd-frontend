@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {DataProcessingService, PayloadModel} from '../../services/data-processing.service';
 import {NgIf, PlatformLocation} from '@angular/common';
 import {ExperimentManagerService} from '../../services/experiment-manager.service';
+import {GlobalCountService} from '../../services/global-count.service';
 
 @Component({
   selector: 'app-free-to-text',
@@ -28,6 +29,7 @@ export class FreeToTextComponent implements OnInit{
   lowlights: [number, number][] = [];
   experimentType: string = 'prompt-to-text'; // Default experiment type
   experimentAttempt: number = 0;
+  currentTotalAttempt: number = 0;
   secondAttempt: boolean = false;
 
   constructor(
@@ -36,6 +38,7 @@ export class FreeToTextComponent implements OnInit{
     private router: Router,
     private dataProcessingService: DataProcessingService,
     private platformLocation: PlatformLocation,
+    private globalCountService: GlobalCountService,
     private experimentManagerService: ExperimentManagerService
   ) {
     // Verhindert das Zurückgehen im Browser
@@ -246,6 +249,7 @@ export class FreeToTextComponent implements OnInit{
       participantId: uniqueParticipantId,
       experimentType: this.experimentType,
       experimentAttempt: this.experimentAttempt,
+      totalAttempt: this.globalCountService.getCount(),
       prompt: currentPrompt,
       highlights: highlights,
       lowlights: lowlights,
@@ -274,6 +278,9 @@ export class FreeToTextComponent implements OnInit{
         this.highlightSet = false;
         this.experimentManagerService.incrementSubmissionCount('free-to-text');
         this.enterSecondAttempt();
+
+        this.globalCountService.incrementCount();
+        console.log('Global count incremented:', this.globalCountService.getCount());
 
         // Navigate to the next component
         this.experimentManagerService.moveToNextComponent();

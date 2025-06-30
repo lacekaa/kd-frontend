@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {DataProcessingService, PayloadModel} from '../../services/data-processing.service';
 import {NgIf, PlatformLocation} from '@angular/common';
 import {ExperimentManagerService} from '../../services/experiment-manager.service';
+import {GlobalCountService} from '../../services/global-count.service';
 
 @Component({
   selector: 'app-image-to-prompt',
@@ -29,6 +30,7 @@ export class ImageToPromptComponent {
   lowlights: [number, number][] = [];
   experimentType: string = 'image-to-prompt';
   experimentAttempt: number = 0;
+  currentTotalAttempt: number = 0;
 
   constructor(
     private keystrokeTrackerService: KeystrokeTrackerService,
@@ -36,6 +38,7 @@ export class ImageToPromptComponent {
     private router: Router,
     private dataProcessingService: DataProcessingService,
     private experimentManagerService: ExperimentManagerService,
+    private globalCountService: GlobalCountService,
     private platformLocation: PlatformLocation
   ) {
     // Verhindert das Zurückgehen im Browser
@@ -261,6 +264,7 @@ export class ImageToPromptComponent {
       participantId: uniqueParticipantId,
       experimentType: this.experimentType,
       experimentAttempt: this.experimentAttempt,
+      totalAttempt: this.globalCountService.getCount(),
       prompt: currentPrompt,
       highlights: highlights,
       lowlights: lowlights,
@@ -290,6 +294,8 @@ export class ImageToPromptComponent {
         this.enterSecondAttempt();
 
         this.experimentManagerService.incrementSubmissionCount('image-to-prompt');
+        this.globalCountService.incrementCount();
+        console.log('Global count incremented:', this.globalCountService.getCount());
 
         // Navigate to the next component
         this.experimentManagerService.moveToNextComponent();
