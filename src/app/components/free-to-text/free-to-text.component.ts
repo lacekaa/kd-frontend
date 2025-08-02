@@ -276,6 +276,8 @@ export class FreeToTextComponent implements OnInit{
         this.errorMessage = '';
         this.promptLocked = false;
         this.highlightSet = false;
+        this.unimportantTrue = false;
+        this.importantTrue = false;
         this.experimentManagerService.incrementSubmissionCount('free-to-text');
         this.enterSecondAttempt();
 

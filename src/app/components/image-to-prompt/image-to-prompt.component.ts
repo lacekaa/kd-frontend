@@ -291,6 +291,8 @@ export class ImageToPromptComponent {
         this.errorMessage = '';
         this.promptLocked = false;
         this.highlightSet = false;
+        this.unimportantTrue = false;
+        this.importantTrue = false;
         this.enterSecondAttempt();
 
         this.experimentManagerService.incrementSubmissionCount('image-to-prompt');

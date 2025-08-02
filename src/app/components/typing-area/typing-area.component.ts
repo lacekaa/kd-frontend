@@ -285,6 +285,10 @@ export class TypingAreaComponent implements OnInit {
     // Increase experimentAttempt by 1
     this.experimentAttempt++;
 
+    this.highlightSet = false;
+    this.unimportantTrue = false;
+    this.importantTrue = false;
+
     console.log('Payload being sent to the backend:', payload);
 
     this.dataProcessingService.submitPayload(payload).subscribe({
@@ -302,6 +306,8 @@ export class TypingAreaComponent implements OnInit {
         this.errorMessage = '';
         this.promptLocked = false;
         this.highlightSet = false;
+        this.unimportantTrue = false;
+        this.importantTrue = false;
         this.enterSecondAttempt();
 
         this.experimentManagerService.incrementSubmissionCount('typing-area');

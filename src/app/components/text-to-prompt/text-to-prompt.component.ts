@@ -293,6 +293,9 @@ export class TextToPromptComponent {
         this.errorMessage = '';
         this.promptLocked = false;
         this.highlightSet = false;
+        this.unimportantTrue = false;
+        this.importantTrue = false;
+
         this.enterSecondAttempt();
 
         // Control navigation based on experimentAttempt
