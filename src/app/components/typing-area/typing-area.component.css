@@ -73,6 +73,15 @@ button {
   background-color: #0056b3;
 }
 
+.reset-last-entry-button {
+  background-color: #94a0a1;
+  color: white;
+}
+
+.reset-last-entry-button:hover {
+  background-color: #6d7776;
+}
+
 .highlight-button {
   background-color: #00ff22;
   color: black;
@@ -116,16 +125,6 @@ button {
   color: #333;
 }
 
-/*.highlight-display {*/
-/*  white-space: pre;*/
-/*  font-size: 16px;*/
-/*  line-height: 1.5;*/
-/*  color: inherit;*/
-/*  text-align: center;*/
-/*  display: inline-block;*/
-/*  font-variant-ligatures: none;*/
-/*  letter-spacing: 0;*/
-/*}*/
 
 .highlight-display span {
   display: inline-block; /* Verhindert zusätzliche Leerzeichen */
@@ -142,27 +141,20 @@ button {
   overflow-wrap: break-word; /* Textumbruch bei Überlauf */
 }
 
-/*.red {*/
-/*  color: red;*/
-/*}*/
-
-/*.black {*/
-/*  color: black;*/
-/*}*/
-
-/*.green {*/
-/*  color: green;*/
-/*}*/
-
 .highlight-display {
   color: inherit; /* Prevent overriding child span colors */
 }
-::ng-deep .highlight-display span.red {
+
+::ng-deep .highlight-display span.confident {
   color: #00ff22 !important;
 }
 
-::ng-deep .highlight-display span.green {
-  color: #4ec1ff !important;
+::ng-deep .highlight-display span.unconfident {
+  color: #3447ac !important;
+}
+
+::ng-deep .highlight-display span.both {
+  color: #76dbff !important;
 }
 
 ::ng-deep .highlight-display span.black {

@@ -49,19 +49,25 @@ export class TypingAreaComponent implements OnInit {
     });
   }
 
-  // ngOnInit(): void {
-  //   const submissionStatus = sessionStorage.getItem('submitted');
-  //   if (submissionStatus === 'true') {
-  //     this.router.navigate(['/text-to-prompt']);
-  //   }
-  //   this.keystrokeTrackerService.setPrompt(this.prompt);
-  // }
-
   ngOnInit(): void {
     this.keystrokeTrackerService.setPrompt(this.prompt);
     this.experimentAttempt = this.experimentManagerService.getSubmissionCount('typing-area');
     this.secondAttempt = this.experimentAttempt === 1;
     this.currentTotalAttempt = this.globalCountService.getCount();
+  }
+
+  adjustImportantTrue(){
+    this.importantTrue = (this.highlightService.getHighlights().length > 0);
+    this.adjustHighlightSet();
+  }
+
+  adjustUnimportantTrue() {
+    this.unimportantTrue = (this.highlightService.getLowlights().length > 0);
+    this.adjustHighlightSet();
+  }
+
+  adjustHighlightSet() {
+    this.highlightSet = this.importantTrue && this.unimportantTrue;
   }
 
   getHighlightRanges(): [number, number][] {
@@ -90,21 +96,6 @@ export class TypingAreaComponent implements OnInit {
     this.keystrokeTrackerService.setPrompt(currentPrompt);
     this.prompt = currentPrompt;
     this.errorMessage = ''; // Clear any previous error message
-  }
-
-  // (Optional) This function is no longer used by the new getFormattedPrompt() method.
-  getColorClass(index: number): string {
-    for (const [start, end] of this.highlights) {
-      if (index >= start && index < end) {
-        return 'red';
-      }
-      for (const [start, end] of this.highlights) {
-        if (index >= start && index < end) {
-          return 'green';
-        }
-      }
-    }
-    return 'black';
   }
 
   onKeyDown(event: KeyboardEvent) {
@@ -145,24 +136,18 @@ export class TypingAreaComponent implements OnInit {
       return;
     }
 
-    // Remove the range from lowlights if it exists there
-    this.lowlights = this.lowlights.filter(([start, end]) => !(start === startIdx && end === endIdx));
-
     // Avoid duplicate highlights
-    if (!this.highlights.some(([start, end]) => start === startIdx && end === endIdx)) {
+    if (!this.highlightService.getHighlights().some(([start, end]) => start === startIdx && end === endIdx)) {
+    // if (!this.highlights.some(([start, end]) => start === startIdx && end === endIdx)) {
       this.highlightService.addHighlight([startIdx, endIdx]);
       this.highlights = this.highlightService.getHighlights();
     }
 
-    this.errorMessage = '';
+    // this.errorMessage = '';
     this.prompt = this.typingArea.nativeElement.value;
-    // this.highlightSet = true;
 
-    this.importantTrue = true;
-    if (this.importantTrue && this.unimportantTrue) {
-      this.highlightSet = true;
-    }
-    // Update the visualization after updating highlights
+    this.adjustImportantTrue();
+    this.adjustUnimportantTrue();
     this.updateFormattedPrompt();
   }
 
@@ -178,11 +163,8 @@ export class TypingAreaComponent implements OnInit {
       return;
     }
 
-    // Remove the range from highlights if it exists there
-    this.highlights = this.highlights.filter(([start, end]) => !(start === startIdx && end === endIdx));
-
     // Avoid duplicate lowlights
-    if (!this.lowlights.some(([start, end]) => start === startIdx && end === endIdx)) {
+    if (!this.highlightService.getLowlights().some(([start, end]) => start === startIdx && end === endIdx)) {
       this.highlightService.addLowlight([startIdx, endIdx]);
       this.lowlights = this.highlightService.getLowlights();
     }
@@ -190,32 +172,28 @@ export class TypingAreaComponent implements OnInit {
     this.errorMessage = '';
     this.prompt = this.typingArea.nativeElement.value;
 
-    this.unimportantTrue = true;
+    this.adjustImportantTrue();
+    this.adjustUnimportantTrue();
+    this.updateFormattedPrompt();
+  }
 
-    if (this.importantTrue && this.unimportantTrue) {
-      this.highlightSet = true;
+  resetLastEntry() {
+    const lastEntry = this.highlightService.removeLastCombinedEntry();
+
+    if (lastEntry) {
+      if (lastEntry.type === 'highlight') {
+        this.highlights = this.highlightService.getHighlights();
+      } else if (lastEntry.type === 'lowlight') {
+        this.lowlights = this.highlightService.getLowlights();
+      }
     }
 
-    // Update the visualization after updating lowlights
+    this.adjustImportantTrue();
+    this.adjustUnimportantTrue();
     this.updateFormattedPrompt();
   }
 
 
-  sendKeystrokes() {
-    const currentPrompt = this.typingArea.nativeElement.value;
-    this.keystrokeTrackerService.setPrompt(currentPrompt);
-    this.prompt = currentPrompt;
-    this.keystrokes = this.keystrokeTrackerService.getKeystrokes();
-  }
-
-  /**
-   * Returns the prompt as a formatted HTML string.
-   * This method segments the prompt based on the highlight ranges (stored in this.highlights).
-   * Segments outside any highlight range are wrapped in a span with class "black", and
-   * segments within a highlight range are wrapped in a span with class "red".
-   *
-   * Future: To add anti_highlights, include them in the segmentation logic below.
-   */
   getFormattedPrompt(): string {
     if (!this.prompt) {
       return '';
@@ -225,18 +203,18 @@ export class TypingAreaComponent implements OnInit {
     const formattedPrompt = promptArray.map((char, index) => {
       // Determine the color class for each character
       let colorClass = 'black';
-      for (const [start, end] of this.highlights) {
-        if (index >= start && index < end) {
-          colorClass = 'red';
-          break;
-        }
+
+      const isInHighlight = this.highlights.some(([start, end]) => index >= start && index < end);
+      const isInLowlight = this.lowlights.some(([start, end]) => index >= start && index < end);
+
+      if (isInHighlight && isInLowlight) {
+        colorClass = 'both'; // Apply 'multi' if index is in both highlights and lowlights
+      } else if (isInHighlight) {
+        colorClass = 'confident'; // Apply 'green' if index is only in highlights
+      } else if (isInLowlight) {
+        colorClass = 'unconfident'; // Apply 'blue' if index is only in lowlights
       }
-      for (const [start, end] of this.lowlights) {
-        if (index >= start && index < end) {
-          colorClass = 'green';
-          break;
-        }
-      }
+
       // Return the character wrapped with a span and the appropriate class
       return `<span class="${colorClass}">${this.escapeHtml(char)}</span>`;
     });

@@ -34,9 +34,10 @@
     ></textarea>
     <div class="button-group">
       <button class="set-prompt-button" *ngIf="!promptLocked" (click)="lockPrompt()">Set Prompt</button>
-      <button class="highlight-button" *ngIf="promptLocked" (click)="onTextSelection()">Important</button>
-      <button class="lowlight-button" *ngIf="promptLocked" (click)="onTextSelectionLow()">Unimportant</button>
+      <button class="highlight-button" *ngIf="promptLocked" (click)="onTextSelection()">Confident</button>
+      <button class="lowlight-button" *ngIf="promptLocked" (click)="onTextSelectionLow()">Unconfident</button>
       <button class="submit-button" *ngIf="highlightSet" (click)="finalizeSubmission()">Submit</button>
+      <button class="reset-last-entry-button" *ngIf="promptLocked" (click)="resetLastEntry()">Remove last confident/unconfident</button>
     </div>
   </div>
 

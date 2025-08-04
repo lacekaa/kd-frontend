@@ -41,20 +41,11 @@ export class FreeToTextComponent implements OnInit{
     private globalCountService: GlobalCountService,
     private experimentManagerService: ExperimentManagerService
   ) {
-    // Verhindert das Zurückgehen im Browser
     history.pushState(null, '', location.href);
     this.platformLocation.onPopState(() => {
       history.pushState(null, '', location.href);
     });
   }
-
-  // ngOnInit(): void {
-  //   const submissionStatus = sessionStorage.getItem('submitted');
-  //   if (submissionStatus === 'true') {
-  //     this.router.navigate(['/text-to-prompt']);
-  //   }
-  //   this.keystrokeTrackerService.setPrompt(this.prompt);
-  // }
 
   ngOnInit(): void {
     this.keystrokeTrackerService.setPrompt(this.prompt);
@@ -62,9 +53,20 @@ export class FreeToTextComponent implements OnInit{
     this.secondAttempt = this.experimentAttempt === 1;
   }
 
-  getHighlightRanges(): [number, number][] {
-    return this.highlightService.getHighlights();
+  adjustImportantTrue(){
+    this.importantTrue = (this.highlightService.getHighlights().length > 0);
+    this.adjustHighlightSet();
   }
+
+  adjustUnimportantTrue() {
+    this.unimportantTrue = (this.highlightService.getLowlights().length > 0);
+    this.adjustHighlightSet();
+  }
+
+  adjustHighlightSet() {
+    this.highlightSet = this.importantTrue && this.unimportantTrue;
+  }
+
 
   lockPrompt() {
     const currentPrompt = this.typingArea.nativeElement.value;
@@ -120,24 +122,19 @@ export class FreeToTextComponent implements OnInit{
       return;
     }
 
-    // Remove the range from lowlights if it exists there
-    this.lowlights = this.lowlights.filter(([start, end]) => !(start === startIdx && end === endIdx));
-
     // Avoid duplicate highlights
-    if (!this.highlights.some(([start, end]) => start === startIdx && end === endIdx)) {
+    if (!this.highlightService.getHighlights().some(([start, end]) => start === startIdx && end === endIdx)) {
+    // if (!this.highlights.some(([start, end]) => start === startIdx && end === endIdx)) {
       this.highlightService.addHighlight([startIdx, endIdx]);
       this.highlights = this.highlightService.getHighlights();
     }
 
     this.errorMessage = '';
     this.prompt = this.typingArea.nativeElement.value;
-    // this.highlightSet = true;
-    this.importantTrue = true;
-    if (this.importantTrue && this.unimportantTrue) {
-      this.highlightSet = true;
-    }
 
-    // Update the visualization after updating highlights
+    this.adjustImportantTrue();
+    this.adjustUnimportantTrue();
+
     this.updateFormattedPrompt();
   }
 
@@ -153,43 +150,37 @@ export class FreeToTextComponent implements OnInit{
       return;
     }
 
-    // Remove the range from highlights if it exists there
-    this.highlights = this.highlights.filter(([start, end]) => !(start === startIdx && end === endIdx));
-
     // Avoid duplicate lowlights
-    if (!this.lowlights.some(([start, end]) => start === startIdx && end === endIdx)) {
+    if (!this.highlightService.getLowlights().some(([start, end]) => start === startIdx && end === endIdx)) {
       this.highlightService.addLowlight([startIdx, endIdx]);
       this.lowlights = this.highlightService.getLowlights();
     }
 
-    this.unimportantTrue = true;
-
-    if (this.importantTrue && this.unimportantTrue) {
-      this.highlightSet = true;
-    }
+    this.adjustImportantTrue();
+    this.adjustUnimportantTrue();
 
     this.errorMessage = '';
     this.prompt = this.typingArea.nativeElement.value;
-    // Update the visualization after updating lowlights
     this.updateFormattedPrompt();
   }
 
+  resetLastEntry() {
+    const lastEntry = this.highlightService.removeLastCombinedEntry();
 
-  sendKeystrokes() {
-    const currentPrompt = this.typingArea.nativeElement.value;
-    this.keystrokeTrackerService.setPrompt(currentPrompt);
-    this.prompt = currentPrompt;
-    this.keystrokes = this.keystrokeTrackerService.getKeystrokes();
+    if (lastEntry) {
+      if (lastEntry.type === 'highlight') {
+        this.highlights = this.highlightService.getHighlights();
+      } else if (lastEntry.type === 'lowlight') {
+        this.lowlights = this.highlightService.getLowlights();
+      }
+    }
+
+    this.adjustImportantTrue();
+    this.adjustUnimportantTrue();
+    this.updateFormattedPrompt();
   }
 
-  /**
-   * Returns the prompt as a formatted HTML string.
-   * This method segments the prompt based on the highlight ranges (stored in this.highlights).
-   * Segments outside any highlight range are wrapped in a span with class "black", and
-   * segments within a highlight range are wrapped in a span with class "red".
-   *
-   * Future: To add anti_highlights, include them in the segmentation logic below.
-   */
+  // color classes for the prompt characters
   getFormattedPrompt(): string {
     if (!this.prompt) {
       return '';
@@ -199,18 +190,18 @@ export class FreeToTextComponent implements OnInit{
     const formattedPrompt = promptArray.map((char, index) => {
       // Determine the color class for each character
       let colorClass = 'black';
-      for (const [start, end] of this.highlights) {
-        if (index >= start && index < end) {
-          colorClass = 'red';
-          break;
-        }
+
+      const isInHighlight = this.highlights.some(([start, end]) => index >= start && index < end);
+      const isInLowlight = this.lowlights.some(([start, end]) => index >= start && index < end);
+
+      if (isInHighlight && isInLowlight) {
+        colorClass = 'both'; // Apply 'multi' if index is in both highlights and lowlights
+      } else if (isInHighlight) {
+        colorClass = 'confident'; // Apply 'green' if index is only in highlights
+      } else if (isInLowlight) {
+        colorClass = 'unconfident'; // Apply 'blue' if index is only in lowlights
       }
-      for (const [start, end] of this.lowlights) {
-        if (index >= start && index < end) {
-          colorClass = 'green';
-          break;
-        }
-      }
+
       // Return the character wrapped with a span and the appropriate class
       return `<span class="${colorClass}">${this.escapeHtml(char)}</span>`;
     });
