@@ -14,38 +14,39 @@
       <strong>Instructions 2:</strong>
     </div>
     <br/>
-    Now highlight at least one part of your prompt you consider important and hit "Important".
-    If you consider some parts of your prompt unimportant, you can highlight them and hit "Unimportant". You must also at
-    least highlight one part of your prompt as unimportant. You can
+    Highlight at least one part of your prompt that you are confident will contribute to the displayed result, then
+    click "Confident".
+    If you feel uncertain about some parts contributing to the result, highlight them and click "Unconfident". You are
+    required to highlight at least one part of your prompt as unconfident. You can
     highlight text with your mouse by clicking and dragging over the text.
     Once done, hit "Submit".
-
-    Note: You can only highlight parts inside the prompt box above, the visualization box below is read-only.
   </div>
 
   <div class="input-section">
-    <textarea
+    <div
       #typingArea
-      class="text-input"
-      [disabled]="promptLocked"
+      class="editable-text"
+      contenteditable="true"
+      [attr.contenteditable]="!promptLocked"
       (keydown)="onKeyDown($event)"
       (keyup)="onKeyUp($event)"
-      placeholder="Type your prompt here..."
-    ></textarea>
+    ></div>
     <div class="button-group">
       <button class="set-prompt-button" *ngIf="!promptLocked" (click)="lockPrompt()">Set Prompt</button>
       <button class="highlight-button" *ngIf="promptLocked" (click)="onTextSelection()">Confident</button>
       <button class="lowlight-button" *ngIf="promptLocked" (click)="onTextSelectionLow()">Unconfident</button>
       <button class="submit-button" *ngIf="highlightSet" (click)="finalizeSubmission()">Submit</button>
-      <button class="reset-last-entry-button" *ngIf="promptLocked" (click)="resetLastEntry()">Remove last confident/unconfident</button>
+      <button class="reset-last-entry-button" *ngIf="promptLocked" (click)="resetLastEntry()">Remove last
+        confident/unconfident
+      </button>
     </div>
   </div>
 
-  <div *ngIf="promptLocked" class="visualization-section">
-    <h3>You can only highlight parts inside the prompt box above, this visualization box
-      is read-only.</h3>
-    <div class="highlight-display" [innerHTML]="getFormattedPrompt()"></div>
-  </div>
+  <!--  <div *ngIf="promptLocked" class="visualization-section">-->
+  <!--    <h3>You can only highlight parts inside the prompt box above, this visualization box-->
+  <!--      is read-only.</h3>-->
+  <!--    <div class="highlight-display" [innerHTML]="getFormattedPrompt()"></div>-->
+  <!--  </div>-->
 
   <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
 </div>

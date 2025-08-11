@@ -77,7 +77,7 @@ export class TextToPromptComponent {
   }
 
   lockPrompt() {
-    const currentPrompt = this.typingArea.nativeElement.value;
+    const currentPrompt = this.typingArea.nativeElement.innerText.trim();
     if (currentPrompt.length < 10) {
       this.errorMessage = 'Prompt too short';
       return;
@@ -114,56 +114,167 @@ export class TextToPromptComponent {
     }
   }
 
+  // Helper: merge intervals and split text into styled spans
+  mergeIntervals(textLength: number, highlights: number[][], lowlights: number[][]) {
+    type Edge = { pos: number; type: 'highlight' | 'lowlight'; delta: number };
+    let edges: Edge[] = [];
+
+    highlights.forEach(([start, end]) => {
+      edges.push({ pos: start, type: 'highlight', delta: +1 });
+      edges.push({ pos: end, type: 'highlight', delta: -1 });
+    });
+
+    lowlights.forEach(([start, end]) => {
+      edges.push({ pos: start, type: 'lowlight', delta: +1 });
+      edges.push({ pos: end, type: 'lowlight', delta: -1 });
+    });
+
+    edges.sort((a, b) => a.pos - b.pos || a.delta - b.delta);
+
+    let intervals = [];
+    let highlightCount = 0;
+    let lowlightCount = 0;
+    let lastPos = 0;
+
+    for (const edge of edges) {
+      if (edge.pos > lastPos) {
+        let type: 'confident' | 'unconfident' | 'both' | 'none' =
+          highlightCount > 0 && lowlightCount > 0 ? 'both' :
+            highlightCount > 0 ? 'confident' :
+              lowlightCount > 0 ? 'unconfident' :
+                'none';
+
+        intervals.push({ start: lastPos, end: edge.pos, type });
+        lastPos = edge.pos;
+      }
+      if (edge.type === 'highlight') highlightCount += edge.delta;
+      else lowlightCount += edge.delta;
+    }
+
+    if (lastPos < textLength) {
+      let type: 'confident' | 'unconfident' | 'both' | 'none' =
+        highlightCount > 0 && lowlightCount > 0 ? 'both' :
+          highlightCount > 0 ? 'confident' :
+            lowlightCount > 0 ? 'unconfident' :
+              'none';
+
+      intervals.push({ start: lastPos, end: textLength, type });
+    }
+
+    return intervals;
+  }
+
+  // Rebuild editable div with combined highlight spans
+  rebuildEditableWithHighlights() {
+    const editableDiv = this.typingArea.nativeElement;
+    const text = editableDiv.innerText;
+    const textLength = text.length;
+
+    const intervals = this.mergeIntervals(textLength, this.highlights, this.lowlights);
+
+    editableDiv.innerHTML = ''; // Clear content
+
+    intervals.forEach(({ start, end, type }) => {
+      if (start >= end) return; // skip empty
+
+      const span = document.createElement('span');
+      span.textContent = text.slice(start, end);
+
+      if (type === 'confident') span.classList.add('confident');
+      else if (type === 'unconfident') span.classList.add('unconfident');
+      else if (type === 'both') span.classList.add('both');
+
+      console.log(`Adding span [${start}-${end}] with type ${type}: "${span.textContent}"`);
+      editableDiv.appendChild(span);
+    });
+  }
+
+  // Mark confident selection
   onTextSelection() {
     if (!this.promptLocked) {
       this.errorMessage = 'Please set the prompt first.';
       return;
     }
-    const textarea = this.typingArea.nativeElement;
-    const startIdx = textarea.selectionStart;
-    const endIdx = textarea.selectionEnd;
-    if (startIdx === endIdx) {
+    const selection = window.getSelection();
+    if (!selection || selection.rangeCount === 0) return;
+
+    const range = selection.getRangeAt(0);
+    if (range.collapsed) return;
+
+    const editableDiv = this.typingArea.nativeElement;
+    if (!editableDiv.contains(range.commonAncestorContainer)) {
+      alert("Please select text from the editable area only.");
       return;
     }
 
-    // Avoid duplicate highlights
-    if (!this.highlightService.getHighlights().some(([start, end]) => start === startIdx && end === endIdx)) {
+    // Compute start/end indices relative to editable div text content
+    const preSelectionRange = range.cloneRange();
+    preSelectionRange.selectNodeContents(editableDiv);
+    preSelectionRange.setEnd(range.startContainer, range.startOffset);
+    const startIdx = preSelectionRange.toString().length;
+    const endIdx = startIdx + range.toString().length;
+    if (startIdx === endIdx) return;
+
+    // Add to highlights if not duplicate
+    if (!this.highlightService.getHighlights().some(([s, e]) => s === startIdx && e === endIdx)) {
       this.highlightService.addHighlight([startIdx, endIdx]);
       this.highlights = this.highlightService.getHighlights();
     }
 
     this.errorMessage = '';
-    this.prompt = this.typingArea.nativeElement.value;
+    this.prompt = editableDiv.innerText;
+
+    this.rebuildEditableWithHighlights();
 
     this.adjustImportantTrue();
     this.adjustUnimportantTrue();
     this.updateFormattedPrompt();
+
+    if (selection) selection.removeAllRanges();
   }
 
+  // Mark unconfident selection
   onTextSelectionLow() {
     if (!this.promptLocked) {
       this.errorMessage = 'Please set prompt first.';
       return;
     }
-    const textarea = this.typingArea.nativeElement;
-    const startIdx = textarea.selectionStart;
-    const endIdx = textarea.selectionEnd;
-    if (startIdx === endIdx) {
+    const selection = window.getSelection();
+    if (!selection || selection.rangeCount === 0) return;
+
+    const range = selection.getRangeAt(0);
+    if (range.collapsed) return;
+
+    const editableDiv = this.typingArea.nativeElement;
+    if (!editableDiv.contains(range.commonAncestorContainer)) {
+      alert("Please select text from the editable area only.");
       return;
     }
 
-    // Avoid duplicate lowlights
-    if (!this.highlightService.getLowlights().some(([start, end]) => start === startIdx && end === endIdx)) {
+    // Compute start/end indices relative to editable div text content
+    const preSelectionRange = range.cloneRange();
+    preSelectionRange.selectNodeContents(editableDiv);
+    preSelectionRange.setEnd(range.startContainer, range.startOffset);
+    const startIdx = preSelectionRange.toString().length;
+    const endIdx = startIdx + range.toString().length;
+    if (startIdx === endIdx) return;
+
+    // Add to lowlights if not duplicate
+    if (!this.highlightService.getLowlights().some(([s, e]) => s === startIdx && e === endIdx)) {
       this.highlightService.addLowlight([startIdx, endIdx]);
       this.lowlights = this.highlightService.getLowlights();
     }
 
     this.errorMessage = '';
-    this.prompt = this.typingArea.nativeElement.value;
+    this.prompt = editableDiv.innerText;
+
+    this.rebuildEditableWithHighlights();
 
     this.adjustImportantTrue();
     this.adjustUnimportantTrue();
     this.updateFormattedPrompt();
+
+    if (selection) selection.removeAllRanges();
   }
 
   resetLastEntry() {
@@ -180,6 +291,9 @@ export class TextToPromptComponent {
     this.adjustImportantTrue();
     this.adjustUnimportantTrue();
     this.updateFormattedPrompt();
+
+    // Update the editable area content based on the prompt and highlights
+    this.typingArea.nativeElement.innerHTML = this.getFormattedPrompt();
   }
 
 
@@ -224,7 +338,7 @@ export class TextToPromptComponent {
   }
 
   finalizeSubmission() {
-    const currentPrompt = this.typingArea.nativeElement.value;
+    const currentPrompt = this.typingArea.nativeElement.innerText.trim();
     this.keystrokeTrackerService.setPrompt(currentPrompt);
     const highlights: [number, number][] = this.highlightService.getHighlights();
     const lowlights: [number, number][] = this.highlightService.getLowlights();
@@ -285,5 +399,15 @@ export class TextToPromptComponent {
         console.error('Error submitting payload:', err);
       },
     });
+    // Clear the editable content:
+    this.typingArea.nativeElement.innerHTML = '';  // or use .innerText = '' if you prefer plain text
+
+    // Optionally, reset any state variables related to the prompt:
+    this.prompt = '';
+    this.highlights = [];
+    this.lowlights = [];
+
+    // Reset promptLocked or other flags if needed
+    this.promptLocked = false;
   }
 }

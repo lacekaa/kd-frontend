@@ -1,3 +1,38 @@
+.editable-text {
+  width: 100%;
+  min-height: 200px;
+  border: 1px solid #ccc;
+  padding: 8px;
+  font-family: monospace;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+mark {
+  background-color: yellow;
+}
+
+.editable-text:empty:before {
+  content: "Type your prompt here...";
+  color: #aaa;
+  pointer-events: none;
+}
+
+/* In your component CSS or SCSS */
+::ng-deep .confident {
+  background-color: #1b9e77 !important;
+  color: white;
+}
+
+::ng-deep .unconfident {
+  background-color: #7570b3 !important;
+  color: white;
+}
+
+::ng-deep .both {
+  background: #d95f02 !important;
+  color: white;
+}
+
 .typing-area-container {
   font-family: 'Roboto', sans-serif;
   max-width: 800px;
@@ -83,21 +118,21 @@ button {
 }
 
 .highlight-button {
-  background-color: #00ff22;
+  background-color: #1b9e77;
   color: black;
 }
 
 .highlight-button:hover {
-  background-color: #048c15;
+  background-color: #187c5b;
 }
 
 .lowlight-button {
-  background-color: #4ec1ff;
+  background-color: #7570b3;
   color: black;
 }
 
 .lowlight-button:hover {
-  background-color: #0584bc;
+  background-color: #aaa6ff;
 }
 
 .submit-button {
@@ -146,15 +181,15 @@ button {
 }
 
 ::ng-deep .highlight-display span.confident {
-  color: #00ff22 !important;
+  color: #1b9e77 !important;
 }
 
 ::ng-deep .highlight-display span.unconfident {
-  color: #3447ac !important;
+  color: #7570b3 !important;
 }
 
 ::ng-deep .highlight-display span.both {
-  color: #76dbff !important;
+  color: #d95f02 !important;
 }
 
 ::ng-deep .highlight-display span.black {
