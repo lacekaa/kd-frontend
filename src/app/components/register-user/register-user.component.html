@@ -6,6 +6,15 @@
     (input)="onProlificIdChange($event)"
     placeholder="Prolific ID"
   />
+  <label for="input-method">What input method for text are you using for this study?</label>
+  <select id="input-method" (change)="onInputMethodChange($event)">
+    <option value="" disabled selected>Select input method</option>
+    <option value="physical-keyboard">Physical Keyboard</option>
+    <option value="virtual-keyboard">Virtual Keyboard (on-screen typing)</option>
+    <option value="handwriting">Handwriting (Writing Tablet or on-device)</option>
+    <option value="dictation">Speech-to-text (Dictation)</option>
+  </select>
+
   <label for="frequency">How often do you create images or texts using artificial intelligence?</label>
   <select id="frequency" (change)="onFrequencyChange($event)">
     <option value="" disabled selected>Select frequency</option>

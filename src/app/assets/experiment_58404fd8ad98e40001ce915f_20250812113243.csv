@@ -1,0 +1,235 @@
+PARTICIPANT_ID,EXPERIMENTTYPE,EXPERIMENTATTEMPT,TOTALATTEMPTCOUNT,LATINSQUARETYPE,PROMPT,CONFIDENT,UNCONFIDENT,KEYSTROKE_ID,PRESS_TIME,RELEASE_TIME,LETTER,KEYCODE,FREQUENCY
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",0,1754998269462,1754998270013,Shift,16, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",1,1754998269892,1754998270054,E,69, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",2,1754998270189,1754998270285,m,77, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",3,1754998270323,1754998270387,a,65, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",4,1754998270326,1754998270378,s,83, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",5,1754998270498,1754998270560,i,73, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",6,1754998270731,1754998270799,l,76, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",7,1754998271810,1754998271898,Backspace,8, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",8,1754998271977,1754998272062,Backspace,8, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",9,1754998272457,1754998272566,Backspace,8, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",10,1754998273269,1754998273336,i,73, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",11,1754998273477,1754998273547,l,76, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",12,1754998273771,1754998273835, ,32, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",13,1754998276327,1754998276480,r,82, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",14,1754998276448,1754998276590,e,69, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",15,1754998276893,1754998276967,g,71, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",16,1754998276968,1754998277052,a,65, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",17,1754998277347,1754998277384,r,82, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",18,1754998277694,1754998277764,d,68, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",19,1754998277794,1754998277862,i,73, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",20,1754998278026,1754998278110,n,78, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",21,1754998278205,1754998278271,g,71, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",22,1754998278329,1754998278404, ,32, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",23,1754998282407,1754998282514,a,65, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",24,1754998282694,1754998282803, ,32, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",25,1754998282832,1754998282894,d,68, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",26,1754998283097,1754998283154,o,79, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",27,1754998283494,1754998283570,c,67, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",28,1754998283707,1754998283784,u,85, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",29,1754998283964,1754998284058,m,77, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",30,1754998284131,1754998284197,e,69, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",31,1754998284269,1754998284329,n,78, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",32,1754998284533,1754998284589,t,84, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",33,1754998284659,1754998284726, ,32, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",34,1754998286110,1754998286170,s,83, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",35,1754998286392,1754998286455,u,85, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",36,1754998286725,1754998286791,b,66, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",37,1754998287032,1754998287110,m,77, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",38,1754998287287,1754998287347,i,73, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",39,1754998287583,1754998287643,s,83, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",40,1754998287718,1754998287788,s,83, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",41,1754998287794,1754998287873,i,73, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",42,1754998287882,1754998287958,o,79, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",43,1754998288110,1754998288176,n,78, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",44,1754998288302,1754998288372, ,32, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",45,1754998288450,1754998288583,r,82, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",46,1754998288554,1754998288678,e,69, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",47,1754998288815,1754998288890,m,77, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",48,1754998289238,1754998289297,i,73, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",49,1754998289444,1754998289523,n,78, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",50,1754998289609,1754998289719,d,68, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",51,1754998289801,1754998289958,e,69, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",52,1754998289935,1754998290022,r,82, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",53,1754998290078,1754998290159, ,32, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",54,1754998290318,1754998290396,t,84, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",55,1754998290462,1754998290532,o,79, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",56,1754998290792,1754998290859, ,32, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",57,1754998296191,1754998296259,a,65, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",58,1754998296900,1754998296984, ,32, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",59,1754998297284,1754998297363,w,87, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",60,1754998297466,1754998297531,o,79, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",61,1754998297713,1754998297778,r,82, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",62,1754998297992,1754998298067,k,75, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",63,1754998298280,1754998298513,t,84, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",64,1754998298282,1754998298305,r,82, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",65,1754998299243,1754998299347,Backspace,8, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",66,1754998299478,1754998299559,Backspace,8, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",67,1754998300096,1754998300327,e,69, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",68,1754998300302,1754998300427,r,82, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",69,1754998300604,1754998300680, ,32, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",70,1754998300869,1754998300973,f,70, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",71,1754998301042,1754998301115,r,82, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",72,1754998301216,1754998301285,o,79, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",73,1754998301429,1754998301509,m,77, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",74,1754998301629,1754998301704, ,32, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",75,1754998301796,1754998301895,t,84, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",76,1754998301994,1754998302054,h,72, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",77,1754998302286,1754998302372,e,69, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",78,1754998302470,1754998302543,i,73, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",79,1754998302669,1754998302745,r,82, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",80,1754998302827,1754998302904, ,32, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",81,1754998303088,1754998303141,b,66, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",82,1754998303359,1754998303401,o,79, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",83,1754998303611,1754998303675,s,83, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",84,1754998303744,1754998303813,s,83, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",85,1754998303992,1754998304075,.,190, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",86,1754998304249,1754998304320, ,32, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",87,1754998305167,1754998305589,Shift,16, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",88,1754998305493,1754998305655,S,83, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",89,1754998305891,1754998305928,h,72, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",90,1754998306171,1754998306291,o,79, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",91,1754998306393,1754998306461,u,85, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",92,1754998306641,1754998306725,l,76, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",93,1754998306804,1754998306863,d,68, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",94,1754998306885,1754998306954, ,32, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",95,1754998307138,1754998307191,i,73, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",96,1754998307332,1754998307396,n,78, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",97,1754998307754,1754998307818,c,67, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",98,1754998307887,1754998307946,l,76, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",99,1754998308197,1754998308251,u,85, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",100,1754998308354,1754998308606,d,68, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",101,1754998308622,1754998308764,e,69, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",102,1754998308815,1754998308893, ,32, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",103,1754998308969,1754998309033,t,84, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",104,1754998309145,1754998309202,h,72, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",105,1754998309275,1754998309342,e,69, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",106,1754998309399,1754998309470, ,32, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",107,1754998311887,1754998311954,l,76, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",108,1754998312124,1754998312198,i,73, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",109,1754998312388,1754998312458,n,78, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",110,1754998312942,1754998313003,e,69, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",111,1754998313245,1754998313325,-,189, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",112,1754998313870,1754998313976, ,32, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",113,1754998330523,1754998330605,Backspace,8, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",114,1754998342731,1754998342827,Enter,13, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",115,1754998343770,1754998344311,Control,17, Monthly
+58404fd8ad98e40001ce915f,text-to-prompt,0,1,5,"Email regarding a document submission reminder to a worker from their boss. Should include the line-
+Hello, This is a reminder that all documents for the Q3 report are due by Friday at noon. Please ensure they are uploaded to the shared folder.","[100,244]","[0,74]",116,1754998344106,1754998344168,v,86, Monthly

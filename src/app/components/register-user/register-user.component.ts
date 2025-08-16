@@ -13,8 +13,9 @@ import {KeystrokeTrackerService} from '../../services/keystroke-tracker.service'
 export class RegisterUserComponent {
   @ViewChild('prolificId') prolificIdInput!: ElementRef<HTMLInputElement>;
   prolificId: string = '';
-  frequency: string = ''; // New property for frequency
+  frequency: string = '';
   errorMessage: string = '';
+  inputMethod: string = '';
 
   constructor(
     private router: Router,
@@ -37,6 +38,11 @@ export class RegisterUserComponent {
     this.frequency = select.value;
   }
 
+  onInputMethodChange(event: Event) {
+    const select = event.target as HTMLSelectElement;
+    this.inputMethod = select.value;
+  }
+
   validateProlificId(): boolean {
     const regex = /^[A-Za-z0-9]+$/;
     if (!regex.test(this.prolificId)) {
@@ -49,11 +55,13 @@ export class RegisterUserComponent {
   }
 
   submitProlificId() {
-    if (this.validateProlificId() && this.frequency) {
+    if (this.validateProlificId() && this.frequency && this.inputMethod) {
       this.keystrokeTrackerService.setId(this.prolificId);
       this.keystrokeTrackerService.setFrequency(this.frequency);
+      this.keystrokeTrackerService.setInputMethod(this.inputMethod);
       console.log('Prolific ID:', this.prolificId);
-      console.log('Frequency:', this.frequency); // Log the frequency
+      console.log('Frequency:', this.frequency);
+      console.log('InputMethod:', this.inputMethod);
       this.router.navigate(['/explanation']);
     } else {
       this.errorMessage = 'Please fill in all fields.';

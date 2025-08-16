@@ -1,0 +1,2 @@
+PARTICIPANT_ID,EXPERIMENTTYPE,EXPERIMENTATTEMPT,TOTALATTEMPTCOUNT,LATINSQUARETYPE,PROMPT,CONFIDENT,UNCONFIDENT,KEYSTROKE_ID,PRESS_TIME,RELEASE_TIME,LETTER,KEYCODE,FREQUENCY
+5f72473314afc916af99e341,text-to-prompt,0,1,5,"Write a reminder email about submitting documents for the Q3 report, including the deadline (Friday at noon) and instructions to upload them to a shared folder","[8,22];[30,67];[69,109];[129,159]","[113,125]",0,1754998090777,1754998090865,Backspace,8, Monthly

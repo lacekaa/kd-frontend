@@ -87,6 +87,7 @@ export class KeystrokeTrackerService {
   private participantId: string = uuidv4();
   private latinSquareType: number = -1;
   private frequency: string = '';
+  private inputMethod: string = '';
   private prompt = '';
   private highlights: [number, number][] = [];
   private lowlights: [number, number][] = [];
@@ -111,6 +112,14 @@ export class KeystrokeTrackerService {
     return this.frequency;
   }
 
+  setInputMethod(inputMethod: string): void {
+    this.inputMethod = inputMethod;
+  }
+
+  getInputMethod(): string {
+    return this.inputMethod;
+  }
+
   setLatinSquareType(type: number) {
     this.latinSquareType = type;
   }
@@ -133,6 +142,7 @@ export class KeystrokeTrackerService {
       new Keystroke(
         this.participantId,
         this.frequency,
+        this.inputMethod,
         this.latinSquareType,
         this.prompt,
         this.highlights,
