@@ -197,6 +197,12 @@ export class ImageToPromptComponent {
     });
   }
 
+  checkInput(){
+    console.log("keystroketrackerservive length is " + this.keystrokeTrackerService.getKeystrokes().length);
+    console.log("prompt length is " + this.prompt.length);
+    return (this.keystrokeTrackerService.getKeystrokes().length >= this.prompt.length);
+  }
+
   // Mark confident selection
   onTextSelection() {
     if (!this.promptLocked) {
@@ -345,19 +351,102 @@ export class ImageToPromptComponent {
       .replace(/'/g, "&#039;");
   }
 
+  // finalizeSubmission() {
+  //   const currentPrompt = this.typingArea.nativeElement.innerText.trim();
+  //   this.keystrokeTrackerService.setPrompt(currentPrompt);
+  //   const highlights: [number, number][] = this.highlightService.getHighlights();
+  //   const lowlights: [number, number][] = this.highlightService.getLowlights();
+  //   if (!highlights || highlights.length === 0) {
+  //     this.errorMessage = 'Please highlight at least one part of your prompt before submitting. You can do this by selecting text with your mouse and hitting "Highlight".';
+  //     return;
+  //   }
+  //   this.keystrokes = this.keystrokeTrackerService.getKeystrokes();
+  //   this.keystrokes.forEach((keystroke) => {
+  //     keystroke.prompt = currentPrompt;
+  //   });
+  //   const uniqueParticipantId = this.keystrokeTrackerService.getParticipantId();
+  //   const frequency = this.keystrokeTrackerService.getFrequency();
+  //   const payload: PayloadModel = {
+  //     participantId: uniqueParticipantId,
+  //     experimentType: this.experimentType,
+  //     experimentAttempt: this.experimentAttempt,
+  //     totalAttempt: this.globalCountService.getCount(),
+  //     prompt: currentPrompt,
+  //     highlights: highlights,
+  //     lowlights: lowlights,
+  //     keystrokes: this.keystrokes,
+  //   };
+  //
+  //   // Increase experimentAttempt by 1
+  //   this.experimentAttempt++;
+  //
+  //   console.log('Payload being sent to the backend:', payload);
+  //
+  //   this.dataProcessingService.submitPayload(payload).subscribe({
+  //     next: (response) => {
+  //       console.log('Response from backend:', response);
+  //
+  //       // Reset the input field and related properties
+  //       this.typingArea.nativeElement.value = ''; // Clear the textarea
+  //       this.prompt = ''; // Reset the prompt property
+  //       this.keystrokeTrackerService.resetKeystrokes();
+  //       this.highlights = [];
+  //       this.lowlights = [];
+  //       this.highlightService.clearHighlights();
+  //       this.highlightService.clearLowlights();
+  //       this.errorMessage = '';
+  //       this.promptLocked = false;
+  //       this.highlightSet = false;
+  //       this.unimportantTrue = false;
+  //       this.importantTrue = false;
+  //       this.enterSecondAttempt();
+  //
+  //       this.experimentManagerService.incrementSubmissionCount('image-to-prompt');
+  //       this.globalCountService.incrementCount();
+  //       console.log('Global count incremented:', this.globalCountService.getCount());
+  //
+  //       // Navigate to the next component
+  //       this.experimentManagerService.moveToNextComponent();
+  //     },
+  //     error: (err) => {
+  //       console.error('Error submitting payload:', err);
+  //     },
+  //   });
+  //
+  //   // Clear the editable content:
+  //   this.typingArea.nativeElement.innerHTML = '';  // or use .innerText = '' if you prefer plain text
+  //
+  //   // Optionally, reset any state variables related to the prompt:
+  //   this.prompt = '';
+  //   this.highlights = [];
+  //   this.lowlights = [];
+  //
+  //   // Reset promptLocked or other flags if needed
+  //   this.promptLocked = false;
+  // }
+
   finalizeSubmission() {
     const currentPrompt = this.typingArea.nativeElement.innerText.trim();
     this.keystrokeTrackerService.setPrompt(currentPrompt);
+
+    if (!this.checkInput()) {
+      console.log('Input check failed. Resetting component state...');
+      this.resetComponentState();
+      return;
+    }
+
     const highlights: [number, number][] = this.highlightService.getHighlights();
     const lowlights: [number, number][] = this.highlightService.getLowlights();
     if (!highlights || highlights.length === 0) {
-      this.errorMessage = 'Please highlight at least one part of your prompt before submitting. You can do this by selecting text with your mouse and hitting "Highlight".';
+      this.errorMessage = 'Please highlight at least one part of your prompt before submitting.';
       return;
     }
+
     this.keystrokes = this.keystrokeTrackerService.getKeystrokes();
     this.keystrokes.forEach((keystroke) => {
       keystroke.prompt = currentPrompt;
     });
+
     const uniqueParticipantId = this.keystrokeTrackerService.getParticipantId();
     const frequency = this.keystrokeTrackerService.getFrequency();
     const payload: PayloadModel = {
@@ -371,51 +460,58 @@ export class ImageToPromptComponent {
       keystrokes: this.keystrokes,
     };
 
-    // Increase experimentAttempt by 1
     this.experimentAttempt++;
+    this.highlightSet = false;
+    this.unimportantTrue = false;
+    this.importantTrue = false;
 
     console.log('Payload being sent to the backend:', payload);
 
     this.dataProcessingService.submitPayload(payload).subscribe({
       next: (response) => {
         console.log('Response from backend:', response);
-
-        // Reset the input field and related properties
-        this.typingArea.nativeElement.value = ''; // Clear the textarea
-        this.prompt = ''; // Reset the prompt property
-        this.keystrokeTrackerService.resetKeystrokes();
-        this.highlights = [];
-        this.lowlights = [];
-        this.highlightService.clearHighlights();
-        this.highlightService.clearLowlights();
-        this.errorMessage = '';
-        this.promptLocked = false;
-        this.highlightSet = false;
-        this.unimportantTrue = false;
-        this.importantTrue = false;
-        this.enterSecondAttempt();
-
+        this.resetComponentState();
         this.experimentManagerService.incrementSubmissionCount('image-to-prompt');
         this.globalCountService.incrementCount();
-        console.log('Global count incremented:', this.globalCountService.getCount());
-
-        // Navigate to the next component
         this.experimentManagerService.moveToNextComponent();
       },
       error: (err) => {
         console.error('Error submitting payload:', err);
       },
     });
+  }
 
-    // Clear the editable content:
-    this.typingArea.nativeElement.innerHTML = '';  // or use .innerText = '' if you prefer plain text
-
-    // Optionally, reset any state variables related to the prompt:
+  resetComponentState() {
+    // Reset component properties
     this.prompt = '';
+    this.keystrokes = [];
+    this.submitted = false;
+    // this.experimentState = [0, 0, 0, 0];
+    this.errorMessage = '';
+    this.promptLocked = false;
+    this.importantTrue = false;
+    this.unimportantTrue = false;
+    this.highlightSet = false;
     this.highlights = [];
     this.lowlights = [];
+    this.experimentType = 'image-to-prompt';
+    this.experimentAttempt = 0;
+    this.currentTotalAttempt = 0;
+    this.secondAttempt = false;
 
-    // Reset promptLocked or other flags if needed
-    this.promptLocked = false;
+    // Reset services
+    this.keystrokeTrackerService.resetKeystrokes();
+    this.highlightService.clearHighlights();
+    this.highlightService.clearLowlights();
+    // this.globalCountService.resetCount();
+
+    // Reset DOM elements
+    if (this.typingArea) {
+      this.typingArea.nativeElement.value = '';
+      this.typingArea.nativeElement.innerHTML = '';
+    }
+
+    // Reinitialize component state
+    this.ngOnInit();
   }
 }

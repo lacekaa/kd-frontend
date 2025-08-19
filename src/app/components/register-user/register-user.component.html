@@ -18,11 +18,11 @@
   <label for="frequency">How often do you create images or texts using artificial intelligence?</label>
   <select id="frequency" (change)="onFrequencyChange($event)">
     <option value="" disabled selected>Select frequency</option>
-    <option value="Never">Never</option>
-    <option value="Rarely">Rarely</option>
-    <option value="Monthly">Monthly</option>
-    <option value="Weekly">Weekly</option>
-    <option value="Daily">Daily</option>
+    <option value="never">Never</option>
+    <option value="rarely">Rarely</option>
+    <option value="monthly">Monthly</option>
+    <option value="weekly">Weekly</option>
+    <option value="daily">Daily</option>
   </select>
   <button (click)="submitProlificId()">Submit</button>
   <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
