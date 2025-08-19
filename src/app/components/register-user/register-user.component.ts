@@ -56,6 +56,10 @@ export class RegisterUserComponent {
 
   submitProlificId() {
     if (this.validateProlificId() && this.frequency && this.inputMethod) {
+      if (this.inputMethod !== 'physical-keyboard'){
+        window.location.href = 'https://app.prolific.com/submissions/complete?cc=C1IY0750';
+        return;
+      }
       this.keystrokeTrackerService.setId(this.prolificId);
       this.keystrokeTrackerService.setFrequency(this.frequency);
       this.keystrokeTrackerService.setInputMethod(this.inputMethod);
